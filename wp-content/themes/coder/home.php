@@ -25,7 +25,7 @@ get_header();
         <div class="clearfix"></div>
         <div class="panel panel-default row">
             <div>
-                <h3 class="recent">近期文章</h3>
+                <h3 class="recent">文章</h3>
             </div>
             <?php
             if (have_posts()) :
@@ -41,8 +41,12 @@ get_header();
             endif;
             ?>
         </div>
+        <div class="page_navigation" aria-label="Page navigation">
+            <?php echo paginate_links( $args ); ?>
+        </div>
     </main>
     <?php
+    // 获取侧边栏
     get_template_part('template-parts/sidebar');
     ?>
 </div>

@@ -462,12 +462,13 @@ function p_link( $i, $title = '' ) {
 endif;
 
 
-function subStrTitle ($maxLen = 15) {
-    $title = get_the_title();
-    if ( strlen($title) == 0 )
+function subStrTitle ($post = 0, $maxLen = 15) {
+    $title = get_the_title($post);
+    $len = mb_strlen($title, 'utf8');
+    if ( $len == 0 )
         return;
-    if (strlen($title) > $maxLen) {
-        $title = mb_substr($title, 0, $maxLen - 1, 'UTF-8') . '...';
+    if ($len > $maxLen) {
+        $title = mb_substr($title, 0, $maxLen - 1, 'utf8') . '...';
     }
     echo $title;
 }
