@@ -461,4 +461,15 @@ function p_link( $i, $title = '' ) {
 }
 endif;
 
+
+function subStrTitle ($maxLen = 15) {
+    $title = get_the_title();
+    if ( strlen($title) == 0 )
+        return;
+    if (strlen($title) > $maxLen) {
+        $title = mb_substr($title, 0, $maxLen - 1, 'UTF-8') . '...';
+    }
+    echo $title;
+}
+
 ?>
