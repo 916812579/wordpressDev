@@ -6,7 +6,7 @@ get_header();
     <main class="col-xs-9 post-wrapper">
         <div class="panel panel-default row">
             <div>
-                <h3 class="hot">热门阅读</h3>
+                <h3 class="hot h3_title">热门阅读</h3>
             </div>
             <?php
             $most_viewed = get_hot_posts(6);
@@ -25,7 +25,7 @@ get_header();
         <div class="clearfix"></div>
         <div class="panel panel-default row">
             <div>
-                <h3 class="recent">文章</h3>
+                <h3 class="recent h3_title">文章</h3>
             </div>
             <?php
             if (have_posts()) :

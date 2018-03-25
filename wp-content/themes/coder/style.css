@@ -49,7 +49,7 @@ body {
 	padding-right: 20px;
 }
 
-.hot, .recent, .like, .category{
+.h3_title{
 	color: #f35626;
 	background-image: -webkit-linear-gradient(92deg,#f35626,#feab3a);
 	-webkit-background-clip: text;
@@ -219,6 +219,28 @@ ul {
 
 .like_panel a{
 	color: #555;
+}
+
+.site_panel {
+    padding-bottom: 10px;
+}
+.category_wrapper, .article_labels_wrapper {
+    padding-bottom: 10px;
+}
+
+.tag {
+    text-align: center;
+}
+
+.tag a {
+    width: 100%;
+    display: block;
+    color: #FFF;
+    background: red;
+    padding: 4px;
+    margin-bottom: 6px;
+    border: solid 1px;
+    border-radius: 6px;
 }
 
 @-webkit-keyframes hue {

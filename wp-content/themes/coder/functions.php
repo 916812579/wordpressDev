@@ -464,13 +464,17 @@ endif;
 
 function subStrTitle ($post = 0, $maxLen = 15) {
     $title = get_the_title($post);
-    $len = mb_strlen($title, 'utf8');
+    echo getClipStr($title, $maxLen);
+}
+
+function getClipStr($str, $maxLen) {
+    $len = mb_strlen($str, 'utf8');
     if ( $len == 0 )
         return;
     if ($len > $maxLen) {
-        $title = mb_substr($title, 0, $maxLen - 1, 'utf8') . '...';
+        $str = mb_substr($str, 0, $maxLen - 1, 'utf8') . '...';
     }
-    echo $title;
+    echo $str;
 }
 
 ?>

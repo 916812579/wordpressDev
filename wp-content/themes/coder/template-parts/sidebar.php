@@ -45,9 +45,9 @@
     $rand_posts = get_posts($args);
     ?>
 
-    <div class="panel panel-default row like_panel">
+    <div class="panel panel-default row site_panel like_panel">
         <div>
-            <h3 class="like">猜你喜欢</h3>
+            <h3 class="like h3_title">猜你喜欢</h3>
         </div>
         <ul class="list-group">
             <?php
@@ -63,10 +63,44 @@
         </ul>
     </div>
 
-    <div class="panel panel-default row ">
+    <div class="panel panel-default row site_panel">
         <div>
-            <h3 class="category">文章分类</h3>
+            <h3 class="category h3_title">分类</h3>
         </div>
-        xxx
+        <div class="category_wrapper">
+            <?php
+            $categories = get_categories($r);
+            foreach ($categories as $categorie) :
+                ?>
+                <div class="col-xs-6 tag"><a style="background-color: <?php echo randomColor();?>"
+                                             href="<?php echo get_category_link($categorie->term_id); ?>"
+                                             title="<?php echo $categorie->name; ?>"><?php echo getClipStr($categorie->name, 10) . " (" . $categorie->count . ") "; ?></a>
+                </div>
+            <?php
+            endforeach;
+            ?>
+        </div>
+    </div>
+
+    <div class="panel panel-default row site_panel">
+        <div>
+            <h3 class="article_labels h3_title">标签云</h3>
+        </div>
+        <div class="article_labels_wrapper">
+            <?php
+            $tags = get_tags($args);
+            foreach ($tags as $tag) :
+                ?>
+                <div class="col-xs-6 tag"><a style="background-color: <?php echo randomColor();?>" href="<?php echo get_category_link($tag); ?>"><?php echo $tag->name; ?></a></div>
+            <?php
+            endforeach;
+            ?>
+        </div>
+    </div>
+
+    <div class="panel panel-default row site_panel">
+        <div>
+            <h3 class="recent_comments h3_title">最新评论</h3>
+        </div>
     </div>
 </aside>
