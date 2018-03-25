@@ -243,6 +243,59 @@ ul {
     border-radius: 6px;
 }
 
+.comment_panel li{
+	list-style: none;
+
+}
+.comment_panel li a {
+	color: #555;
+}
+
+.fa_commenting {
+	font-size: 52px;
+	color: rgba(19, 171, 19, 0.66);
+	padding-bottom: 24px;
+}
+
+.muted {
+	border-radius: 3px;
+	position: relative;
+	min-height: 40px;
+	background: #fbfdfb;
+	border: 1px #eee solid;
+	padding: 8px;
+	width: 74%;
+	font-size: 14px;
+	float: right;
+
+}
+
+.muted i {
+	color: #e74c3c;
+}
+
+.muted::before {
+	content: '';
+	display: inline-block;
+	border-top: 9px solid transparent;
+	border-bottom: 9px solid transparent;
+	border-right: 9px solid #eee;
+	position: absolute;
+	top: 12px;
+	left: -9px;
+}
+
+div.muted::after {
+	content: '';
+	display: inline-block;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	border-right: 7px solid #fbfdfb;
+	position: absolute;
+	top: 14px;
+	left: -7px;
+}
+
 @-webkit-keyframes hue {
 	from {
 		-webkit-filter: hue-rotate(0deg);
