@@ -1,43 +1,53 @@
-<!-- 
-  参考：
-  http://www.xminseo.com/
-  https://yusi123.com/
--->
-
 <?php
 get_header();
 ?>
 
-<div class="col-md-8 main-content">
-	 <?php if ( have_posts() ) : ?>
-					<?php
-    while (have_posts()) :
-        the_post();
-    // include 'modules/excerpt.php';
-    get_template_part('template-parts/post/excerpt', get_post_format());
-    endwhile
-    ;
-    
-    the_posts_pagination(array(
-        'mid_size' => 20,
-        'prev_text' => __('Previous page'),
-        'next_text' => __('Next page'),
-        'screen_reader_text' => __(''),
-        'type' => 'list'
-    ));
- else :
-    // get_template_part('content', 'none');
-    echo "敬请期待！！！";
-
-
-endif;
-?>
+<div class="row  content-body">
+    <main class="col-xs-9 post-wrapper">
+        <div class="panel panel-default row">
+            <div>
+                <h3 class="hot h3_title">热门阅读</h3>
+            </div>
+            <?php
+            $most_viewed = get_hot_posts(6);
+            if ($most_viewed->have_posts()) :
+                while ($most_viewed->have_posts()) :
+                    $most_viewed->the_post();
+                    get_template_part('template-parts/post/excerpt', get_post_format());
+                    ?>
+                <?php
+                endwhile;
+            endif;
+            wp_reset_postdata();
+            ?>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="panel panel-default row">
+            <div>
+                <h3 class="recent h3_title">文章</h3>
+            </div>
+            <?php
+            if (have_posts()) :
+                ?>
+                <?php
+                while (have_posts()) :
+                    the_post();
+                    get_template_part('template-parts/post/excerpt', get_post_format());
+                endwhile;
+            else :
+                // get_template_part('content', 'none');
+                echo "敬请期待！！！";
+            endif;
+            ?>
+        </div>
+        <div class="page_navigation" aria-label="Page navigation">
+            <?php echo paginate_links( $args ); ?>
+        </div>
+    </main>
+    <?php
+    // 获取侧边栏
+    get_template_part('template-parts/sidebar');
+    ?>
 </div>
-
-<?php
-get_template_part('template-parts/sidebar/sidebar_index');
-?>
-
-
-
 <?php get_footer(); ?>

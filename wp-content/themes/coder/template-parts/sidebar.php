@@ -2,6 +2,7 @@
 ?>
 
 <aside id="sidebar" class="col-xs-3 post-sidebar">
+    <?php if (is_home()) : ?>
     <div class="panel panel-default row site_summary">
         <a href="<?php echo esc_url(home_url('/')); ?>"><img class="site_img img-circle"
                                                              src="<?php echo get_bloginfo('template_url') ?>/images/mocky.png"
@@ -19,7 +20,7 @@
                                                           data-placement="top"></i></a>
         </div>
     </div>
-
+   <?php endif;?>
     <?php
     $numberposts = 6;
     $args = array(
@@ -28,8 +29,12 @@
         'post_status' => 'publish'
     );
 
-    if (is_category()) {
-        $categories = get_the_category();
+    if (is_category() || is_single()) {
+        $post_id = false;
+        if (is_single()) {
+            $post_id = the_post()->ID;
+        }
+        $categories = get_the_category($post_id);
         $category = 0;
         if ($categories[0]) {
             $category = $category[0]->term_id;
@@ -99,6 +104,7 @@
         </div>
     </div>
 
+    <?php if (is_home()) : ?>
     <div class="panel panel-default row site_panel comment_panel">
         <div>
             <h3 class="recent_comments h3_title">最新评论</h3>
@@ -125,4 +131,5 @@
             <?php endforeach; ?>
         </ul>
     </div>
+    <?php endif;?>
 </aside>
