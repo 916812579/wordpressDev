@@ -494,6 +494,12 @@ class timthumb {
 		}
 		return false;
 	}
+
+    /**
+     * 处理图片缓存
+     * @param $localImage
+     * @return bool
+     */
 	protected function processImageAndWriteToCache($localImage){
 		$sData = getimagesize($localImage);
 		$origType = $sData[2];

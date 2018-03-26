@@ -1,8 +1,7 @@
 <?php
 get_header();
 ?>
-
-<div class="row  content-body">
+<div class="row content-body">
     <main class="col-xs-9 post-wrapper">
         <div class="panel panel-default row">
             <div>
@@ -10,10 +9,15 @@ get_header();
             </div>
             <?php
             $most_viewed = get_hot_posts(6);
+            $count = 0;
             if ($most_viewed->have_posts()) :
                 while ($most_viewed->have_posts()) :
+                    $count ++;
                     $most_viewed->the_post();
                     get_template_part('template-parts/post/excerpt', get_post_format());
+                    if ($count % 2 == 0) {
+                        echo '<div class="clearfix"></div>';
+                    }
                     ?>
                 <?php
                 endwhile;

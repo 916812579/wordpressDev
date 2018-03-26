@@ -15,4 +15,4 @@ function highlightText(selector, cls) {
 	}
 }
 
-highlightText(".container-section p span", "hl_text");
+highlightText(".article-content p span", "hl_text");

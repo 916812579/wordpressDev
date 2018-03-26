@@ -462,8 +462,12 @@ function p_link( $i, $title = '' ) {
 endif;
 
 
-function subStrTitle ($post = 0, $maxLen = 15) {
+function subStrTitle ($post = 0, $maxLen = 12) {
     $title = get_the_title($post);
+    // 判断是否全为中文
+    if (!preg_match('/^[\x{4e00}-\x{9fa5}]+$/u', $title)>0) {
+        $maxLen = 16;
+    }
     echo getClipStr($title, $maxLen);
 }
 
@@ -477,4 +481,55 @@ function getClipStr($str, $maxLen) {
     echo $str;
 }
 
-?>
+
+$description = '猿乐园博客是专注于IT开发工作经验分享的个人博客，博客内容基本都经过个人验证。涵盖了java开发、移动端开发、大数据开发、数据库技术领域等相关技能。猿乐园坚持开源软件的开源思想，站内所有文章不受版权约束，如果喜欢可以任意转载。';
+$keywords = "猿乐园";
+$seoMaxLength = 200;
+
+/**
+ * 获取站点描述 SEO
+ */
+function getSeo()
+{
+    global $description, $keywords, $seoMaxLength, $post;
+    if (is_home() || is_page()) {
+        $categories = get_categories();
+        $keywords = "";
+        if (!is_wp_error($categories)) {
+            $categories = (array)$categories;
+            foreach (array_keys($categories) as $k) {
+                $keywords .= $categories[$k]->name;
+                $keywords .= " ";
+            }
+        }
+    } elseif (is_single()) {
+        $description1 = get_post_meta($post->ID, "description", true);
+        $description2 = str_replace("\n", "", mb_strimwidth(strip_tags($post->post_content), 0, $seoMaxLength, "…", 'utf-8'));
+        // 填写自定义字段description时显示自定义字段的内容，否则使用文章内容前200字作为描述
+        $description = $description1 ? $description1 : $description2;
+        // 填写自定义字段keywords时显示自定义字段的内容，否则使用文章tags作为关键词
+        $keywords = get_post_meta($post->ID, "keywords", true);
+        if ($keywords == '') {
+            $tags = wp_get_post_tags($post->ID);
+            foreach ($tags as $tag) {
+                $keywords = $keywords . $tag->name . ", ";
+            }
+            $keywords = rtrim($keywords, ', ');
+        }
+
+        if ($keywords == '') {
+            $keywords = $post->post_title;
+        }
+    } elseif (is_category()) {
+        // 分类的description可以到后台 - 文章 -分类目录，修改分类的描述
+        $description = category_description();
+        $keywords = single_cat_title('', false);
+    } elseif (is_tag()) {
+        // 标签的description可以到后台 - 文章 - 标签，修改标签的描述
+        $description = tag_description();
+        $keywords = single_tag_title('', false);
+    }
+    $description = trim(strip_tags($description));
+    $keywords = trim(strip_tags($keywords));
+
+}

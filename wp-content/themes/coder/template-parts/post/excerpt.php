@@ -1,4 +1,4 @@
-<div class="col-xs-6">
+<article class="col-xs-6 article">
     <div class="thumbnail" title="<?php echo the_title(); ?>" data-toggle="tooltip" data-placement="top">
         <?php if (has_post_thumbnail()) { ?>
             <a href="<?php the_permalink(); ?>"><img
@@ -35,4 +35,4 @@
             </p>
         </div>
     </div>
-</div>
+</article>
