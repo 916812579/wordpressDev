@@ -25,7 +25,7 @@ get_header();
             ?>
 
         </article>
-        <section class="related_top">
+        <section class="panel panel-default">
             <?php include('modules/related.php'); ?>
         </section>
         <section>

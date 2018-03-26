@@ -1,107 +1,94 @@
-<div class="related_posts">
-    <ul class="related_img">
-        <?php
-        $post_num = 4;
-        $exclude_id = $post->ID;
-        $posttags = get_the_tags();
-        $i = 0;
-        if ($posttags) {
-            $tags = '';
-            foreach ($posttags as $tag) $tags .= $tag->term_id . ',';
-            $args = array(
-                'post_status' => 'publish', 'tag__in' => explode(',', $tags), 'post__not_in' => explode(',', $exclude_id), 'caller_get_posts' => 1, 'orderby' => 'comment_date', 'posts_per_page' => $post_num
-            );
-            query_posts($args);
-            while (have_posts()) {
-                the_post(); ?>
-
-                <li class="related_box">
-                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" target="_blank">
-                        <?php if (has_post_thumbnail()) { ?>
-                            <img
-                                    src="<?php echo get_bloginfo('template_url') ?>/timthumb.php?src=<?php echo post_thumbnail_src(); ?>&h=110&w=175&q=80&zc=1&ct=1"
-                                    alt="<?php echo $post->post_title; ?>"/>
-                        <?php } else { ?>
-                            <img
-                                    src="<?php echo get_bloginfo('template_url') ?>/timthumb.php?src=<?php echo esc_url(get_template_directory_uri()); ?>/images/default.png&h=110&w=175&q=80&zc=1&ct=1"
-                                    alt="<?php echo $post->post_title; ?>"/>
-                        <?php } ?> <br><span class="r_title"><?php the_title(); ?></span></a>
-                </li>
-                <?php $exclude_id .= ',' . $post->ID;
-                $i++;
-            }
-            wp_reset_query();
-        }
-        if ($i < $post_num) {
-            $cats = '';
-            foreach (get_the_category() as $cat) $cats .= $cat->cat_ID . ',';
-            $args = array(
-
-                'category__in' => explode(',', $cats), 'post__not_in' => explode(',', $exclude_id), 'caller_get_posts' => 1, 'orderby' => 'comment_date', 'posts_per_page' => $post_num - $i
-
-            );
-            query_posts($args);
-            while (have_posts()) {
-                the_post(); ?>
-
-                <li class="related_box">
-                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" target="_blank">
-                        <?php if (has_post_thumbnail()) { ?>
-                            <img
-                                    src="<?php echo get_bloginfo('template_url') ?>/timthumb.php?src=<?php echo post_thumbnail_src(); ?>&h=110&w=175&q=80&zc=1&ct=1"
-                                    alt="<?php echo $post->post_title; ?>"/>
-                        <?php } else { ?>
-                            <img
-                                    src="<?php echo get_bloginfo('template_url') ?>/timthumb.php?src=<?php echo esc_url(get_template_directory_uri()); ?>/images/default.png&h=110&w=175&q=80&zc=1&ct=1"
-                                    alt="<?php echo $post->post_title; ?>"/>
-                        <?php } ?><br><span class="r_title"><?php the_title(); ?></span></a>
-                </li>
-                <?php $i++;
-            }
-            wp_reset_query();
-        }
-        if ($i == 0) echo '<div class=\"r_title\">没有相关文章!</div>'; ?>
-    </ul>
-
-    <div class="relates">
-        <ul>
-            <?php
-            $exclude_id = $post->ID;
-            $posttags = get_the_tags();
-            $i = 0;
-            $limit = 8;
-            if ($posttags) {
-                $tags = '';
-                foreach ($posttags as $tag) $tags .= $tag->name . ',';
-                $args = array('post_status' => 'publish', 'tag_slug__in' => explode(',', $tags), 'post__not_in' => explode(',', $exclude_id), 'caller_get_posts' => 1, 'orderby' => 'comment_date', 'posts_per_page' => $limit
-                );
-                query_posts($args);
-                while (have_posts()) {
-                    the_post();
-                    echo '<li><i class="fa fa-minus"></i><a href="' . get_permalink() . '">', get_the_title(), '</a></li>';
-                    $exclude_id .= ',' . $post->ID;
-                    $i++;
-                };
-                wp_reset_query();
-            }
-            if ($i < $limit) {
-                $cats = '';
-                foreach (get_the_category() as $cat) $cats .= $cat->cat_ID . ',';
-                $args = array(
-                    'category__in' => explode(',', $cats), 'post__not_in' => explode(',', $exclude_id), 'caller_get_posts' => 1, 'orderby' => 'comment_date', 'posts_per_page' => $limit - $i
-                );
-                query_posts($args);
-                while (have_posts()) {
-                    the_post();
-                    echo '<li><i class="fa fa-minus"></i><a target="_blank" href="' . get_permalink() . '">', get_the_title(), '</a></li>';
-                    $i++;
-                };
-                wp_reset_query();
-            }
-            if ($i == 0) {
-                echo '<li>暂无相关文章！</li>';
-            } ?>
-
-        </ul>
-    </div>
+<div>
+    <h3 class="h3_title">相关推荐</h3>
 </div>
+<?php
+// 获取同类文章20篇
+$cats = '';
+$post_num = 20;
+foreach (get_the_category() as $cat) $cats .= $cat->cat_ID . ',';
+$args = array(
+    'category__in' => explode(',', $cats), 'post__not_in' => explode(',', $exclude_id), 'caller_get_posts' => 1, 'orderby' => 'comment_date', 'posts_per_page' => $post_num
+);
+query_posts($args);
+if (have_posts()) :
+    echo '<div class="row relate_post">';
+    $even = array();
+    $odd = array();
+    $count = 0;
+    while (have_posts()) {
+        the_post();
+        global $post;
+        if ($count % 2 == 0) {
+            array_push($even, $post);
+        } else {
+            array_push($odd, $post);
+        }
+        $count++;
+    }
+
+    echo '<div class="col-xs-6">';
+    echo '<ul class="list-group">';
+    $count = 0;
+    foreach ($even as $post) :
+        ?>
+        <li class="list-group-item"><span class="count_seq"><?php echo 2 * $count + 1; ?></span><a
+                    title="<?php echo get_the_title($post); ?>"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    href="<?php the_permalink($rand_post); ?>"><?php subStrTitle($rand_post, 22); ?></a>
+        </li>
+        <?php
+        $count++;
+    endforeach;
+    echo '</ul">';
+    echo '</div>';
+    echo '<div class="col-xs-6">';
+    echo '<ul class="list-group">';
+    $count = 1;
+    foreach ($odd as $post) :
+        ?>
+        <li class="list-group-item"><span class="count_seq"><?php echo 2 * $count; ?></span><a
+                    title="<?php echo get_the_title($post); ?>"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    href="<?php the_permalink($rand_post); ?>"><?php subStrTitle($rand_post); ?></a>
+        </li>
+        <?php
+        $count++;
+    endforeach;
+    echo '</ul">';
+    echo '</div>';
+    echo '</div>';
+endif;
+wp_reset_query();
+?>
+
+
+<?php
+// 根据标签查找8篇文章
+$exclude_id = $post->ID;
+$posttags = get_the_tags();
+$i = 0;
+$limit = 8;
+if ($posttags) {
+    $tags = '';
+    foreach ($posttags as $tag) $tags .= $tag->name . ',';
+    $args = array('post_status' => 'publish', 'tag_slug__in' => explode(',', $tags), 'post__not_in' => explode(',', $exclude_id), 'caller_get_posts' => 1, 'orderby' => 'comment_date', 'posts_per_page' => $limit
+    );
+    query_posts($args);
+    if (have_posts()) {
+        echo '<div class="row relate_post">';
+        $count = 0;
+        while (have_posts()) {
+            $count++;
+            the_post();
+            get_template_part('template-parts/post/relateExcerpt', get_post_format());
+            if ($count % 4 == 0) {
+                echo '<div class="clearfix"></div>';
+            }
+        };
+        echo '</div>';
+    }
+    wp_reset_query();
+}
+?>

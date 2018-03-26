@@ -22,9 +22,10 @@
                         href="<?php echo get_comments_link(); ?>"><?php echo get_comments_number('0', '1', '%'); ?>
                     评论</a></span>
 
+            <span class="meta-ele">
             <?php if (get_edit_post_link($post->ID)) : ?>
                 <i class="fa fa-pencil-square-o"></i>
-                <?php edit_post_link('编辑'); endif; ?>
+                <?php edit_post_link('编辑'); endif; ?></span>
         </div>
     </header>
 </div>
@@ -36,26 +37,27 @@
     </div>
 </article>
 
- <?php
-        $tags = wp_get_post_tags($post->ID);
-        if (!empty($tags)) :
-        ?>
-<footer class="article-footer">
-    <div class="article-tags">
-        <i class="fa fa-tags"></i>
-        <?php
-        $tags = wp_get_post_tags($post->ID);
-        $count = 1;
-        foreach ($tags as $tag) :
-            ?>
-            <a href="<?php echo get_tag_link($tag->term_id); ?>"
-               data-toggle="tooltip" rel="tag"
-               class="post_tag post_tag_<?php echo $count; ?>" data-original-title=""
-               title="<?php echo $tag->name; ?>"><?php echo $tag->name; ?></a>
-            <?php $count++; endforeach; ?>
-    </div>
-</footer>
-<?php endif;?>
+<?php
+$tags = wp_get_post_tags($post->ID);
+if (!empty($tags)) :
+    ?>
+    <footer class="article-footer">
+        <div class="article-tags">
+            <i class="fa fa-tags"></i>
+            <?php
+            $tags = wp_get_post_tags($post->ID);
+            $count = 1;
+            foreach ($tags as $tag) :
+                ?>
+                <a class="post-tag" style="background-color: <?php echo randomColor(); ?>"
+                   href="<?php echo get_tag_link($tag->term_id); ?>"
+                   data-toggle="tooltip" rel="tag"
+                   class="post_tag post_tag_<?php echo $count; ?>" data-original-title=""
+                   title="<?php echo $tag->name; ?>"><?php echo $tag->name; ?></a>
+                <?php $count++; endforeach; ?>
+        </div>
+    </footer>
+<?php endif; ?>
 
 <nav class="article-nav">
     <?php if (get_previous_post()) : ?>

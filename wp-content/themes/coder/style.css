@@ -364,6 +364,10 @@ a:hover {
     font-size: 17px;
 }
 
+.article-content {
+    margin-top: 16px;
+}
+
 .hl_text {
     margin: 0 2px;
     color: #e96900;
@@ -389,7 +393,7 @@ a:hover {
 }
 
 .article-social a, .wp-zan.zaned {
-    background-color: #e96900;
+    background-color: #ec6149;
     width: 80px;
     height: 80px;
     display: inline-block;
@@ -397,10 +401,27 @@ a:hover {
     line-height: 80px;
     color: #FFF!important;
     font-size: 16px;
-    box-shadow: 1px 5px 5px #888888;
-    border: solid 1px #e96900;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+    border: solid 1px #ec6149;
+    margin-top: 20px;
 }
 
+.article-social a:hover, .article-social:visited, .article-social:link, .article-social:active{
+    text-decoration: none;
+}
+
+.post-tag {
+    color: #FFF;
+    padding: 4px 16px;
+    border: solid 1px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.article {
+    -webkit-animation: hue 1s ease;
+    transform: translateY(0px);
+}
 
 @-webkit-keyframes hue {
     from {

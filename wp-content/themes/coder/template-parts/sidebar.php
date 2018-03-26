@@ -30,11 +30,7 @@
     );
 
     if (is_category() || is_single()) {
-        $post_id = false;
-        if (is_single()) {
-            $post_id = the_post()->ID;
-        }
-        $categories = get_the_category($post_id);
+        $categories = get_the_category();
         $category = 0;
         if ($categories[0]) {
             $category = $category[0]->term_id;
@@ -44,6 +40,17 @@
             'orderby' => 'rand',
             'post_status' => 'publish',
             'category' => $category
+        );
+    }
+    if (is_single()) {
+        $cats = '';
+        foreach (get_the_category() as $cat) $cats .= $cat->cat_ID . ',';
+        $args = array(
+            'category__in' => explode(',', $cats),
+            'post__not_in' => explode(',', $exclude_id),
+            'caller_get_posts' => 1,
+            'orderby' => 'rand',
+            'numberposts' => $numberposts,
         );
     }
     $rand_posts = get_posts($args);
