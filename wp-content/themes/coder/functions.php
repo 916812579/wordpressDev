@@ -319,7 +319,7 @@ function wp_custom_zan($odc = false)
     
     $action = "wpzan($postId, $userId)";
     
-    $btn_html = $odc ? '<a id="wp-zan-%d" class="%s addLike" onclick="%s" href="javascript:;"><span>%d</span></a>' : '<a id="wp-zan-%d" class="%s addLike" onclick="%s" href="javascript:;"><i class="fa fa-heart-o"></i>喜欢 (<span>%d</span>)</a>';
+    $btn_html = $odc ? '<a id="wp-zan-%d" class="%s addLike img-circle" onclick="%s" href="javascript:;"><span>%d</span></a>' : '<a id="wp-zan-%d" class="%s addLike img-circle" onclick="%s" href="javascript:;"></i>赞 (<span>%d</span>)</a>';
     $button = sprintf($btn_html, $postId, $class . " action zan", $action, $wpzan->zan_count);
     
     echo $button;
