@@ -36,7 +36,9 @@
         <?php wp_custom_zan(); ?>
     </div>
     <?php // 分享功能，参考：https://github.com/calledT/sosh ?>
-    <div id="soshid"></div>
+    <div id="soshid-wrapper">
+        <div id="soshid"></div>
+    </div>
 </article>
 
 <?php
@@ -51,7 +53,7 @@ if (!empty($tags)) :
             $count = 1;
             foreach ($tags as $tag) :
                 ?>
-                <a class="post-tag" style="background-color: <?php echo randomColor(); ?>"
+                <a class="post-tag " style="background-color: <?php echo randomFromColorArray(); ?>"
                    href="<?php echo get_tag_link($tag->term_id); ?>"
                    data-toggle="tooltip" rel="tag"
                    class="post_tag post_tag_<?php echo $count; ?>" data-original-title=""

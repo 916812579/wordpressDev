@@ -596,9 +596,28 @@ a:hover {
     text-align: center;
 }
 
+.post-tag {
+    color: #FFF;
+    padding: 4px;
+    padding-left: 12px;
+    margin-bottom: 6px;
+    border: solid 1px;
+    border-radius: 6px;
+    padding-right: 12px;
+}
+
 em, a em {
     font-style: normal;
     color: #c00;
+}
+
+#soshid-wrapper {
+    text-align: center;
+}
+
+#soshid {
+    margin: 32px auto;
+    display: inline-block;
 }
 
 

@@ -18,9 +18,10 @@
     </div>
 </footer>
 <?php
-if (check_user_isAdmin()) {
+// 屏蔽管理栏
+//if (check_user_isAdmin()) {
     wp_footer();
-}
+//}
 get_css("/css/animate.min.css");
 get_css("/plugins/toastr/toastr.min.css");
 // get_js("/js/jQuery.textSlider.js");
