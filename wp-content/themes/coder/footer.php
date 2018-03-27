@@ -30,6 +30,7 @@ get_js("/plugins/toastr/toastr.min.js");
 get_js("/js/zan.js");
 get_js("/bootstrap-3.3.7/js/bootstrap.min.js");
 get_js("/js/imageToBig.js");
+get_js("/js/sosh-master/dist/sosh.min.js");
 
 ?>
 
@@ -61,21 +62,6 @@ if (is_single()) {
 
     })
 
-    function fullscrent() {
-        var left = $(".fa-caret-left");
-        var right = $(".fa-caret-right");
-        if ($(".container-section").hasClass("container")) {
-            $(".container-section").removeClass("container ");
-            $(".container-section").addClass("container-fluid");
-        } else {
-            $(".container-section").addClass("container");
-            $(".container-section").removeClass("container-fluid");
-        }
-        left.addClass("fa-caret-right");
-        left.removeClass("fa-caret-left");
-        right.addClass("fa-caret-left");
-        right.removeClass("fa-caret-right");
-    }
 </script>
 </body>
 </html>

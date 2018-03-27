@@ -30,7 +30,11 @@
     );
 
     if (is_category() || is_single()) {
-        $categories = get_the_category();
+        $post_id = false;
+        if (is_single()) {
+            $post_id = the_post()->ID;
+        }
+        $categories = get_the_category($post_id);
         $category = 0;
         if ($categories[0]) {
             $category = $category[0]->term_id;
@@ -42,42 +46,47 @@
             'category' => $category
         );
     }
-    if (is_single()) {
-        $cats = '';
-        foreach (get_the_category() as $cat) $cats .= $cat->cat_ID . ',';
+    if (is_search()) {
         $args = array(
-            'category__in' => explode(',', $cats),
-            'post__not_in' => explode(',', $exclude_id),
-            'caller_get_posts' => 1,
-            'orderby' => 'rand',
             'numberposts' => $numberposts,
+            'orderby' => 'rand',
+            'post_status' => 'publish',
+            's' => $s
         );
     }
     $rand_posts = get_posts($args);
-    ?>
+    if (!empty($rand_posts)) :
+        ?>
 
-    <div class="panel panel-default row site_panel like_panel">
-        <div>
-            <h3 class="like h3_title">猜你喜欢</h3>
-        </div>
-        <ul class="list-group">
-            <?php
-            $count = 0;
-            foreach ($rand_posts as $rand_post) :
-                $count++;
+        <div class="panel panel-default row site_panel like_panel">
+            <div>
+                <h3 class="like h3_title">猜你喜欢</h3>
+            </div>
+            <ul class="list-group">
+                <?php
+                $count = 0;
+                foreach ($rand_posts as $rand_post) :
+                    $count++;
+                    ?>
+                    <li class="list-group-item"><span class="count_seq"><?php echo $count; ?></span><a
+                                title="<?php echo get_the_title($rand_post); ?>"
+                                data-toggle="tooltip"
+                                data-placement="top"
+                                href="<?php the_permalink($rand_post); ?>"><?php
+                            if (is_search()) {
+                                echo highlightKeyWord($s, getSubStrTitle($rand_post));
+                            } else {
+                                subStrTitle($rand_post);
+                            }
+
+                            ?></a>
+                    </li>
+                <?php
+                endforeach;
                 ?>
-                <li class="list-group-item"><span class="count_seq"><?php echo $count; ?></span><a
-                            title="<?php echo get_the_title($post); ?>"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            href="<?php the_permalink($rand_post); ?>"><?php subStrTitle($rand_post); ?></a>
-                </li>
-            <?php
-            endforeach;
-            ?>
-        </ul>
-    </div>
-
+            </ul>
+        </div>
+    <?php endif; ?>
     <div class="panel panel-default row site_panel">
         <div>
             <h3 class="category h3_title">分类</h3>
@@ -87,7 +96,7 @@
             $categories = get_categories($r);
             foreach ($categories as $categorie) :
                 ?>
-                <div class="col-xs-6 tag"><a style="background-color: <?php echo randomColor(); ?>"
+                <div class="col-xs-6 tag"><a style="background-color: <?php echo randomFromColorArray(); ?>"
                                              href="<?php echo get_category_link($categorie->term_id); ?>"
                                              title="<?php echo $categorie->name; ?>"><?php echo $categorie->name . " (" . $categorie->count . ") "; ?></a>
                 </div>
@@ -106,7 +115,7 @@
             $tags = get_tags($args);
             foreach ($tags as $tag) :
                 ?>
-                <div class="col-xs-6 tag"><a style="background-color: <?php echo randomColor(); ?>"
+                <div class="col-xs-6 tag"><a style="background-color: <?php echo randomFromColorArray(); ?>"
                                              href="<?php echo get_category_link($tag); ?>"><?php echo $tag->name; ?></a>
                 </div>
             <?php
