@@ -80,7 +80,7 @@
             $categories = get_categories($r);
             foreach ($categories as $categorie) :
                 ?>
-                <div class="col-xs-6 tag"><a style="background-color: <?php echo randomColor(); ?>"
+                <div class="col-xs-6 tag"><a style="background-color: <?php echo randomFromColorArray(); ?>"
                                              href="<?php echo get_category_link($categorie->term_id); ?>"
                                              title="<?php echo $categorie->name; ?>"><?php echo $categorie->name . " (" . $categorie->count . ") "; ?></a>
                 </div>
@@ -99,7 +99,7 @@
             $tags = get_tags($args);
             foreach ($tags as $tag) :
                 ?>
-                <div class="col-xs-6 tag"><a style="background-color: <?php echo randomColor(); ?>"
+                <div class="col-xs-6 tag"><a style="background-color: <?php echo randomFromColorArray(); ?>"
                                              href="<?php echo get_category_link($tag); ?>"><?php echo $tag->name; ?></a>
                 </div>
             <?php

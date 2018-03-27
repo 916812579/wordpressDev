@@ -328,6 +328,10 @@ a:hover {
     color: #f35626;
 }
 
+.tag a:hover {
+    color: #FFF;
+}
+
 .article-header {
     margin-bottom: 10px;
 }
@@ -349,7 +353,7 @@ a:hover {
     margin-left: 16px;
 }
 
-.article-content p{
+.article-content p {
     font-size: 18px;
     color: #333;
     line-height: 32px;
@@ -395,12 +399,196 @@ a:hover {
     display: inline-block;
     text-align: center;
     line-height: 80px;
-    color: #FFF!important;
+    color: #FFF !important;
     font-size: 16px;
     box-shadow: 1px 5px 5px #888888;
     border: solid 1px #e96900;
 }
 
+/** 评论相关样式开始  **/
+#respond {
+    position: relative;
+    background-color: #fff;
+}
+
+.comt-area {
+    margin-bottom: 5px;
+}
+
+.input-block-level {
+    display: block;
+    width: 100%;
+    min-height: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.comt-title {
+    overflow: hidden;
+    padding: 12px 20px;
+    background-color: #f7f7f7;
+}
+
+.comt {
+    padding: 20px 20px 5px 20px;
+    position: relative;
+}
+
+#comments {
+    font-size: 15px;
+    padding: 12px 20px;
+    line-height: 14px;
+    color: #5fbaac;
+    font-weight: normal;
+    border-bottom: 1px solid #dbece8;
+}
+
+.commentlist {
+    padding: 12px 20px 20px 20px;
+}
+
+.commentlist .no_webshot {
+    margin-top: 20px;
+}
+
+.c-main {
+    padding: 10px 15px;
+    line-height: 25px;
+    margin-top: -2px;
+    margin-left: 72px;
+    border-radius: 3px;
+    position: relative;
+    background: #fbfdfb;
+    border: 1px #eee solid;
+    font-size: 15px;
+}
+
+#postcomments {
+    position: relative;
+    background-color: #fff;
+}
+
+.comt {
+    padding: 20px 20px 50px 20px;
+    position: relative;
+}
+
+#comment_mail_notify {
+    margin-left: 0;
+}
+
+.commentlist li {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.comt-smilie {
+    cursor: pointer;
+    margin-top: 2px;
+    display: inline-block;
+}
+
+.comt-author {
+    margin: 5px 10px 0 10px;
+    font-size: 16px;
+    color: #666;
+}
+
+.comt-author span {
+    color: #bbb;
+    margin-left: 10px;
+}
+
+.c-author {
+    padding-right: 4px;
+    color: #00a67c;
+}
+
+.c-avatar .avatar {
+    position: absolute;
+    width: 54px;
+    height: 54px;
+    border-radius: 2px;
+    webkit-transition: all 300ms ease-in-out;
+    -o-transition: all 300ms ease-in-out;
+    -moz-transition: all 300ms ease-in-out;
+    -ms-transition: all 300ms ease-in-out;
+    -webkit-transition: all .3s ease-out;
+}
+
+.comt-avatar {
+    height: 28px !important;
+    width: 28px;
+}
+
+.comt-avatar img {
+    border-radius: 2px;
+    opacity: .9;
+    height: 28px !important;
+    width: 28px !important;
+}
+
+.comment-reply-link {
+    margin-left: 6px;
+    color: #00a67c;
+    float: right;
+}
+
+.c_content {
+    padding: 5px 0px;
+}
+
+.comment #cancel-comment-reply-link {
+    display: block;
+}
+
+#cancel-comment-reply-link {
+    display: none;
+    color: #bbb;
+    margin: -12px -20px;
+    line-height: 28px;
+    font-size: 14px;
+    padding: 12px 20px;
+}
+
+.comt-comterinfo {
+    padding: 20px 0 0 210px;
+    color: #444;
+    display: none;
+}
+
+.comt-comterinfo h5 {
+    float: left;
+    width: 190px;
+    line-height: 100px;
+    margin-left: -210px;
+    text-align: right;
+    _display: inline;
+}
+
+.comt-comterinfo ul {
+    border-left: dotted 1px #ccc;
+    padding-left: 30px;
+    list-style: none;
+}
+
+.comt-comterinfo input {
+    margin-right: 10px;
+    position: relative;
+}
+
+.comt-comterinfo ul li {
+    margin-top: 10px;
+}
+
+/** 评论相关样式结束  **/
+
+.page-header {
+    text-align: center;
+}
 
 @-webkit-keyframes hue {
     from {
