@@ -13,12 +13,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <?php
+    header("content-type:text/html;charset=<?php bloginfo('charset'); ?>");
     get_js("/jquery-3.2.1/jquery-3.2.1.min.js");
     getSeo();
     global $description;
     global $keywords;
     ?>
-    <meta name="description" content="<?php echo $description; ?>"/>
+    <meta name="description" id="desc" content="<?php echo $description; ?>"/>
     <meta name="keywords" content="<?php echo $keywords; ?>"/>
 
 

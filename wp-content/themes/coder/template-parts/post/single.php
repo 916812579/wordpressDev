@@ -3,7 +3,7 @@
 <div class="content">
     <header class="article-header-meta">
         <h3 class="article-title">
-            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+            <a id="post_title" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
         </h3>
         <div class="meta">
 			<span id="mute-category"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;<?php
@@ -34,6 +34,8 @@
     <div class="article-social">
         <?php wp_custom_zan(); ?>
     </div>
+    <?php // 分享功能，参考：https://github.com/calledT/sosh ?>
+    <div id="soshid"></div>
 </article>
 
  <?php

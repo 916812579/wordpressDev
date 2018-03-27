@@ -32,6 +32,8 @@
                     get_currentuserinfo();
                     $uid = $current_user->ID;
                     $u_name = get_user_meta($uid, 'nickname', true);
+                    $write_article_url = esc_url(home_url('/')) . 'wp-admin/post-new.php';
+                    echo '<li><a class="ab-item" href="' . $write_article_url . '"><i class="fa fa-pencil-square-o"></i>写文章</a></li>';
                     echo '<li><a href="#">欢迎 ' . $u_name . '</a></li>';
                     echo '<li><a href="' . esc_url(wp_logout_url()) . '">' . '退出' . '</a></li>';
                 } else {

@@ -429,7 +429,8 @@ a:hover {
 .comt-title {
     overflow: hidden;
     padding: 12px 20px;
-    background-color: #f7f7f7;
+    padding-top: 16px;
+    padding-bottom: 0;
 }
 
 .comt {
@@ -441,9 +442,14 @@ a:hover {
     font-size: 15px;
     padding: 12px 20px;
     line-height: 14px;
-    color: #5fbaac;
+    color: #e96900;
     font-weight: normal;
-    border-bottom: 1px solid #dbece8;
+    border-bottom: solid 1px rgba(158, 158, 158, 0.35);
+    padding-top: 16px;
+}
+
+#comments i {
+    font-size: 20px;
 }
 
 .commentlist {
@@ -589,6 +595,12 @@ a:hover {
 .page-header {
     text-align: center;
 }
+
+em, a em {
+    font-style: normal;
+    color: #c00;
+}
+
 
 @-webkit-keyframes hue {
     from {

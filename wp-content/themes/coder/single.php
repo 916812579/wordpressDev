@@ -37,3 +37,32 @@ get_header();
     ?>
 </div>
 <?php get_footer(); ?>
+<script>
+    <?php
+    // soshm('#share', {
+    //     // 分享的链接，默认使用location.href
+    //     url: '',
+    //     // 分享的标题，默认使用document.title
+    //     title: '',
+    //     // 分享的摘要，默认使用<meta name="description" content="">content的值
+    //     digest: '',
+    //     // 分享的图片，默认获取本页面第一个img元素的src
+    //     pic: '',
+    //     // 默认显示的网站为以下六个个,支持设置的网站有
+    //     // weixin,weixintimeline,qq,qzone,yixin,weibo,tqq,renren,douban,tieba
+    //     sites: ['weixin', 'weixintimeline', 'yixin', 'weibo', 'qq', 'qzone']
+    // });
+    ?>
+    var title = $("#post_title").html();
+    var desc = $("#desc").attr("content");
+    var url = location.href;
+    var pic = "<?php echo get_bloginfo('template_url'); ?>" + "/images/default.jpg";
+    sosh('#soshid', {
+        url: url,
+        title: title,
+        digest: desc,
+        pic: pic,
+        sites: ['weixin', 'weibo', 'yixin', 'qzone', 'tqq', 'douban', 'renren', 'tieba']
+    });
+
+</script>

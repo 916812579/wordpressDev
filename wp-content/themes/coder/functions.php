@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * 指定编码
+ */
+$encoding = get_bloginfo('charset', 'display');
+
 if (!function_exists('coder_setup')) :
 
     function coder_setup()
@@ -243,7 +249,7 @@ function get_hot_zan($count)
     $arr = array();
     $posts = $wpdb->get_results($wpdb->prepare("SELECT a.* , count(1) cnt FROM $wpdb->posts as a join wp_zan as b on a.ID = b.post_id group by a.ID order by cnt desc limit 0, %d;", $count));
     foreach ($posts as $post) {
-        $_post = sanitize_post($_post, 'raw');
+        $post = sanitize_post($post, 'raw');
         // wp_cache_add($_post->ID, $_post, 'posts');
         array_push($arr, $post);
     }
@@ -512,23 +518,34 @@ endif;
 
 function subStrTitle($post = 0, $maxLen = 12)
 {
-    $title = get_the_title($post);
+    echo getSubStrTitle($post, $maxLen);
+}
+
+function getSubStrTitle($post = 0, $maxLen = 12)
+{
+    $title = "";
+    if ($post) {
+        $title = $post -> post_title;
+    } else {
+        $title = the_title('', '', false);
+    }
     // 判断是否全为中文
     if (!preg_match('/^[\x{4e00}-\x{9fa5}]+$/u', $title) > 0) {
         $maxLen = 16;
     }
-    echo getClipStr($title, $maxLen);
+    return getClipStr($title, $maxLen);
 }
 
 function getClipStr($str, $maxLen)
 {
-    $len = mb_strlen($str, 'utf8');
+    global $encoding;
+    $len = mb_strlen($str, $encoding);
     if ($len == 0)
         return;
     if ($len > $maxLen) {
-        $str = mb_substr($str, 0, $maxLen - 1, 'utf8') . '...';
+        $str = mb_strimwidth($str, 0, $maxLen, '...', $encoding);
     }
-    echo $str;
+    return $str;
 }
 
 
@@ -582,4 +599,15 @@ function getSeo()
     $description = trim(strip_tags($description));
     $keywords = trim(strip_tags($keywords));
 
+}
+
+/**
+ * 高亮关键字
+ */
+function highlightKeyWord($s, $content)
+{
+    $keys = explode(" ", $s);
+    // implode() 函数返回由数组元素组合成的字符串
+    $content = preg_replace('/(' . implode('|', $keys) . ')/iu', '<em>\0</em>', $content);
+    return $content;
 }

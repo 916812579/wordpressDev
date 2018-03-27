@@ -8,6 +8,10 @@
             <a href="<?php the_permalink(); ?>"><img
                         src="<?php echo get_bloginfo('template_url') ?>/images/default.jpg" alt=""></a>
         <?php } ?>
+
+        <?php
+        $s = trim(get_search_query()) ? trim(get_search_query()) : 0;
+        ?>
         <div class="caption">
             <h3>
                 <?php
@@ -18,9 +22,25 @@
                     }
                 };
                 ?>
-                <a class="post_title_link" href="<?php the_permalink(); ?>"><?php subStrTitle(); ?></a>
+                <a class="post_title_link" href="<?php the_permalink(); ?>"><?php
+                    if (is_search()) {
+                        echo highlightKeyWord($s, getSubStrTitle());
+                    } else {
+                        subStrTitle();
+                    }
+                    ?></a>
             </h3>
-            <p><?php get_post_excerpt(); ?></p>
+
+            <p><?php
+                if (is_search()) {
+                    global $encoding;
+                    $content = mb_strimwidth(strip_tags(apply_filters('the_content', $post->post_content)), 0, 260, "...", $encoding);
+                    $content = highlightKeyWord($s, $content);
+                    echo $content;
+                } else {
+                    get_post_excerpt();
+                }
+                ?></p>
             <p class="post_info">
                 <span><i class="fa fa-clock-o"></i><?php echo timeago(get_gmt_from_date(get_the_time('Y-m-d G:i:s'))) ?></span>
                 <a href="#"><i class="fa fa-comments-o"></i> <span
