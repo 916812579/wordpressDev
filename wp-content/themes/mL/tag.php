@@ -9,13 +9,13 @@ get_header();
 ?>
 
 <div class="row  content-body">
-    <header class="col-xs-12 article-header">
+    <header class="col-md-12 article-header">
         <div class="mbx-dh">
             当前标签： <?php echo single_tag_title(); ?>
         </div>
     </header>
 
-    <main class="col-xs-9 post-wrapper">
+    <main class="col-md-9 post-wrapper">
         <div class="panel panel-default row">
             <div>
                 <h3 class="recent h3_title">文章</h3>
