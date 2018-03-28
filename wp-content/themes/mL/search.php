@@ -1,19 +1,19 @@
 <?php get_header(); ?>
     <div class="row  content-body">
         <?php if (!have_posts()) : ?>
-            <header class="col-xs-12 article-header">
+            <header class="col-md-12 article-header">
                 <div class="mbx-dh">
                     当前搜索： <?php echo '<em>' . $s . '</em>, 没有相关内容，推荐如下'; ?>
                 </div>
             </header>
         <?php else: ?>
-            <header class="col-xs-12 article-header">
+            <header class="col-md-12 article-header">
                 <div class="mbx-dh">
                     当前搜索： <?php echo '<em>' . $s . '</em>, 结果如下'; ?>
                 </div>
             </header>
         <?php endif; ?>
-        <main class="col-xs-9">
+        <main class="col-md-9">
             <div class="panel panel-default">
                 <?php if (!have_posts()) : ?>
                     <div>

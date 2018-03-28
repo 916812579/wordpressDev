@@ -3,7 +3,7 @@ get_header();
 ?>
 
 <div class="row  content-body">
-    <main class="col-xs-9 post-wrapper">
+    <main class="col-md-9 post-wrapper">
         <div class="panel panel-default row">
             <div>
                 <h3 class="hot h3_title">热门阅读</h3>

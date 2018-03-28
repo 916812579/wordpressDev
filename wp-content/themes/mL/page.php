@@ -7,7 +7,7 @@ Template Name: Page
 get_header();
 ?>
     <div class="row">
-        <main class="col-xs-9">
+        <main class="col-md-9">
             <div class="panel panel-default">
                 <?php if (have_posts()) : ?>
                     <?php

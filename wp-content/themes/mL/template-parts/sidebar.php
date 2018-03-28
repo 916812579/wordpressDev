@@ -1,7 +1,7 @@
 <?php
 ?>
 
-<aside id="sidebar" class="col-xs-3 post-sidebar">
+<aside id="sidebar" class="col-md-3 post-sidebar">
     <?php if (is_home()) : ?>
         <div class="panel panel-default row site_summary">
             <a href="<?php echo esc_url(home_url('/')); ?>"><img class="site_img img-circle"
@@ -96,7 +96,7 @@
             $categories = get_categories($r);
             foreach ($categories as $categorie) :
                 ?>
-                <div class="col-xs-6 tag"><a style="background-color: <?php echo randomFromColorArray(); ?>"
+                <div class="col-md-6 tag"><a style="background-color: <?php echo randomFromColorArray(); ?>"
                                              href="<?php echo get_category_link($categorie->term_id); ?>"
                                              title="<?php echo $categorie->name; ?>"><?php echo $categorie->name . " (" . $categorie->count . ") "; ?></a>
                 </div>
@@ -115,7 +115,7 @@
             $tags = get_tags($args);
             foreach ($tags as $tag) :
                 ?>
-                <div class="col-xs-6 tag"><a style="background-color: <?php echo randomFromColorArray(); ?>"
+                <div class="col-md-6 tag"><a style="background-color: <?php echo randomFromColorArray(); ?>"
                                              href="<?php echo get_category_link($tag); ?>"><?php echo $tag->name; ?></a>
                 </div>
             <?php
