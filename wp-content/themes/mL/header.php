@@ -41,7 +41,7 @@
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <?php wp_head(); ?>
+    <?php //wp_head(); ?>
     <link rel="shortcut icon"
           href="<?php echo esc_url(get_template_directory_uri()); ?>/images/favicon.ico">
 

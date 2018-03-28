@@ -18,7 +18,7 @@ $count_t = $post->comment_count;
 date_default_timezone_set(PRC);
 $closeTimer = (strtotime(date('Y-m-d G:i:s')) - strtotime(get_the_time('Y-m-d G:i:s'))) / 86400;
 ?>
-    <div id="respond" class="no_webshot panel panel-default row">
+    <div id="respond" class="no_webshot panel panel-default">
         <?php if (get_option('comment_registration') && !is_user_logged_in()) { ?>
             <h3 class="queryinfo">
                 <?php printf('您必须 <a href="%s">登录</a> 才能发表评论！', wp_login_url(get_permalink())); ?>
@@ -31,13 +31,13 @@ $closeTimer = (strtotime(date('Y-m-d G:i:s')) - strtotime(get_the_time('Y-m-d G:
             <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
 
                 <div class="comt-title">
-                    <div class="comt-avatar pull-left">
+                    <div class="comt-avatar pull-left img-circle">
                         <?php
                         global $current_user;
                         get_currentuserinfo();
                         $size = 28;
-                        $args = array("class" => "img-circle");
-                        if (is_user_logged_in())
+                        $args = array("class" => "avatar-wrapper");
+                        if (is_user_logged_in()) // 如果登录， get_avatar获取用户的图像
                             echo get_avatar($current_user->user_email, $size, deel_avatar_default(), "", $args);
                         elseif (!is_user_logged_in() && get_option('require_name_email') && $comment_author_email == '')
                             echo get_avatar($current_user->user_email, $size, deel_avatar_default(), "", $args);
@@ -114,7 +114,7 @@ $closeTimer = (strtotime(date('Y-m-d G:i:s')) - strtotime(get_the_time('Y-m-d G:
 
 if (have_comments()) {
     ?>
-    <div id="postcomments" class="panel panel-default row">
+    <div id="postcomments" class="panel panel-default">
         <div id="comments">
             <i class="fa fa-comments-o"></i> <b><?php echo ' (' . $count_t . ')'; ?></b>个小伙伴在吐槽
         </div>

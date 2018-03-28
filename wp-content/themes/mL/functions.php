@@ -422,7 +422,7 @@ function deel_views($after = '')
 
 function deel_avatar_default()
 {
-    return get_bloginfo('template_directory') . '/imgages/default_user.png';
+    return get_bloginfo('template_directory') . '/images/default_user.png';
 }
 
 //自动勾选

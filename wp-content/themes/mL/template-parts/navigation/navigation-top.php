@@ -12,13 +12,7 @@
            href="<?php echo esc_url(home_url('/')); ?>">猿乐园</a>
 
 
-        <div class="collapse navbar-collapse"
-             id="bs-example-navbar-collapse-1">
-            <!--
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
-            </ul>   -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <?php
             wp_nav_menu(array(
                 'container' => '',
@@ -33,11 +27,24 @@
                     $uid = $current_user->ID;
                     $u_name = get_user_meta($uid, 'nickname', true);
                     $write_article_url = esc_url(home_url('/')) . 'wp-admin/post-new.php';
-                    $control_url = esc_url(home_url('/')) . 'wp-admin/';
-                    echo '<li><a class="ab-item" href="' . $control_url . '">控制台</a></li>';
                     echo '<li><a class="ab-item" href="' . $write_article_url . '"><i class="fa fa-pencil-square-o"></i>写文章</a></li>';
+                    echo '<li>';
+                    echo '<div class="dropdown-toggle">';
+                    echo '<span class="dropdown-toggle"  id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
+                    echo get_avatar($current_user->user_email, 28, deel_avatar_default(), "", null);
+                    echo '</span>';
+                    echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
                     echo '<li><a href="#">欢迎 ' . $u_name . '</a></li>';
+                    echo '<li role="separator" class="divider"></li>';
+                    if (check_user_isAdmin()) {
+                        $control_url = esc_url(home_url('/')) . 'wp-admin/';
+                        echo '<li><a class="ab-item" href="' . $control_url . '">控制台</a></li>';
+                        echo '<li role="separator" class="divider"></li>';
+                    }
                     echo '<li><a href="' . esc_url(wp_logout_url()) . '">' . '退出' . '</a></li>';
+                    echo '</ul>';
+                    echo '</div>';
+                    echo '</li>';
                 } else {
                     echo "<li><a href='" . get_bloginfo('url') . "/wp-login.php'>登录</a></li>";
                 } ?>
@@ -56,8 +63,6 @@
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
             </ul>
-
-
         </div>
     </div>
 </nav>

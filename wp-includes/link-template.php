@@ -3837,6 +3837,7 @@ function get_avatar_url( $id_or_email, $args = null ) {
  * }
  */
 function get_avatar_data( $id_or_email, $args = null ) {
+
 	$args = wp_parse_args( $args, array(
 		'size'           => 96,
 		'height'         => null,
@@ -3914,6 +3915,7 @@ function get_avatar_data( $id_or_email, $args = null ) {
 
 	if ( isset( $args['url'] ) && ! is_null( $args['url'] ) ) {
 		/** This filter is documented in wp-includes/link-template.php */
+
 		return apply_filters( 'get_avatar_data', $args, $id_or_email );
 	}
 
@@ -4009,6 +4011,7 @@ function get_avatar_data( $id_or_email, $args = null ) {
 	 *                            user email, WP_User object, WP_Post object, or WP_Comment object.
 	 * @param array  $args        Arguments passed to get_avatar_data(), after processing.
 	 */
+
 	$args['url'] = apply_filters( 'get_avatar_url', $url, $id_or_email, $args );
 
 	/**

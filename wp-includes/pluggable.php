@@ -2289,6 +2289,7 @@ endif;
 
 if ( !function_exists( 'get_avatar' ) ) :
 /**
+ *
  * Retrieve the avatar `<img>` tag for a user, email address, MD5 hash, comment, or post.
  *
  * @since 2.5.0
@@ -2321,6 +2322,7 @@ if ( !function_exists( 'get_avatar' ) ) :
  *     @type string       $extra_attr    HTML attributes to insert in the IMG element. Is not sanitized. Default empty.
  * }
  * @return false|string `<img>` tag for the user's avatar. False on failure.
+ * 获取用户的图像
  */
 function get_avatar( $id_or_email, $size = 96, $default = '', $alt = '', $args = null ) {
 	$defaults = array(
@@ -2346,6 +2348,7 @@ function get_avatar( $id_or_email, $size = 96, $default = '', $alt = '', $args =
 	$args['default'] = $default;
 	$args['alt']     = $alt;
 
+	// 合并传递的参数和默认参数
 	$args = wp_parse_args( $args, $defaults );
 
 	if ( empty( $args['height'] ) ) {
@@ -2356,6 +2359,7 @@ function get_avatar( $id_or_email, $size = 96, $default = '', $alt = '', $args =
 	}
 
 	if ( is_object( $id_or_email ) && isset( $id_or_email->comment_ID ) ) {
+	    // WP_Comment 获取评论
 		$id_or_email = get_comment( $id_or_email );
 	}
 
@@ -2372,6 +2376,8 @@ function get_avatar( $id_or_email, $size = 96, $default = '', $alt = '', $args =
 	 *                            user email, WP_User object, WP_Post object, or WP_Comment object.
 	 * @param array  $args        Arguments passed to get_avatar_url(), after processing.
 	 */
+	// apply_filters 创建一个过滤器, 第一个参数是过滤器的名称，第二个参数是要过滤的值， 后面的参数是传递给过滤器的参数，返回结果是过滤后的值
+    // add_filter 添加过滤器, 如果没有添加pre_get_avatar过滤器，这里返回的是null
 	$avatar = apply_filters( 'pre_get_avatar', null, $id_or_email, $args );
 
 	if ( ! is_null( $avatar ) ) {
@@ -2383,8 +2389,10 @@ function get_avatar( $id_or_email, $size = 96, $default = '', $alt = '', $args =
 		return false;
 	}
 
+	// 最终还是调用：get_avatar_data
 	$url2x = get_avatar_url( $id_or_email, array_merge( $args, array( 'size' => $args['size'] * 2 ) ) );
 
+	// 获取图片相关数据
 	$args = get_avatar_data( $id_or_email, $args );
 
 	$url = $args['url'];

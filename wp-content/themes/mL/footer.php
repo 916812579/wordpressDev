@@ -20,7 +20,7 @@
 <?php
 // 屏蔽管理栏
 //if (check_user_isAdmin()) {
-    wp_footer();
+    //wp_footer();
 //}
 get_css("/css/animate.min.css");
 get_css("/plugins/toastr/toastr.min.css");
@@ -56,12 +56,12 @@ if (is_single()) {
         $('pre, code').each(function (i, block) {
             hljs.highlightBlock(block);
         });
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $(".dropdown-toggle").on("mouseover", function() {
+            $(".dropdown-toggle").click();
+        })
     });
-
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-
-    })
 
 </script>
 </body>

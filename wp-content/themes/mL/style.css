@@ -531,7 +531,6 @@ a:hover {
 }
 
 .comt-avatar img {
-    border-radius: 2px;
     opacity: .9;
     height: 28px !important;
     width: 28px !important;
@@ -620,6 +619,17 @@ em, a em {
     display: inline-block;
 }
 
+.avatar-wrapper img:hover{
+    border-radius: 50%;
+}
+
+.dropdown-toggle .avatar {
+    margin-top: 12px;
+}
+
+.avatar {
+    border-radius: 50%;
+}
 
 @-webkit-keyframes hue {
     from {
