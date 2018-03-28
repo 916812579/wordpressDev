@@ -510,7 +510,7 @@ a:hover {
 
 .c-author {
     padding-right: 4px;
-    color: #00a67c;
+    color: #e96900;
 }
 
 .c-avatar .avatar {
@@ -538,7 +538,7 @@ a:hover {
 
 .comment-reply-link {
     margin-left: 6px;
-    color: #00a67c;
+    color: #e96900;
     float: right;
 }
 
@@ -629,6 +629,22 @@ em, a em {
 
 .avatar {
     border-radius: 50%;
+}
+
+html {
+    margin-top: 0 !important;
+}
+
+#submit {
+    margin-top: 8px;
+}
+
+.w-e-text-container .w-e-text {
+    overflow-y: auto; !important;
+}
+
+#submit i {
+    color: #fff;
 }
 
 @-webkit-keyframes hue {

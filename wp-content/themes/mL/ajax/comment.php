@@ -96,7 +96,8 @@ echo get_avatar( $comment->comment_author_email, $size = '54' , deel_avatar_defa
 echo '<div class="c-main" id="div-comment-'.get_comment_ID().'">';
     echo '<span class="c-author">'.get_comment_author_link().'</span>';
     if ($comment -> comment_parent > 0) {
-        echo "回复: ";
+        $cmt = get_comment($comment->comment_parent);
+        echo "回复: <span class='c-author'>" . $cmt->comment_author . "</span>";
     } else {
         echo "说: ";
     }

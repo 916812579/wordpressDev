@@ -35,9 +35,25 @@ get_header();
     <?php
     get_template_part('template-parts/sidebar');
     ?>
+
 </div>
 <?php get_footer(); ?>
+
+<?php
+get_css("/plugins/wangEditor-3.1.0/release/wangEditor.css");
+get_js("/plugins/wangEditor-3.1.0/release/wangEditor.js");
+?>
 <script>
+
+    var E = window.wangEditor;
+    var editor = new E('#comment_editor')
+    editor.customConfig.menus = ['head', 'bold', 'fontSize', 'fontName', 'italic', 'underline', 'strikeThrough', 'foreColor', 'backColor', 'link', 'list', 'justify', 'quote', 'emoticon', 'code', 'undo', 'redo']
+    var comment = $("#comment");
+    editor.customConfig.onchange = function (html) {
+        // 监控变化，同步更新到 textarea
+        comment.val(html)
+    }
+    editor.create();
     <?php
     // soshm('#share', {
     //     // 分享的链接，默认使用location.href
@@ -66,3 +82,5 @@ get_header();
     });
 
 </script>
+
+

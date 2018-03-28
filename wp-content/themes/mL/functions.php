@@ -452,7 +452,8 @@ function deel_comment_list($comment, $args, $depth)
     echo '<span class="c-author">' . get_comment_author_link() . '</span>';
 
     if ($comment->comment_parent > 0) {
-        echo "回复: ";
+        $comt = get_comment($comment->comment_parent);
+        echo "回复: <span class='c-author'>" . $comt->comment_author . "</span>";
     } else {
         echo "说: ";
     }

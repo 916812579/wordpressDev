@@ -1370,6 +1370,8 @@ function() {
                     $("textarea").each(function() {
                         this.value = ""
                     });
+                    alert(1);
+                    editor.txt.clear();
                     var t = addComment,
                     cancel = t.I("cancel-comment-reply-link"),
                     temp = t.I("wp-temp-form-div"),

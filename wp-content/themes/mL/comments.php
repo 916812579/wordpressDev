@@ -50,12 +50,12 @@ $closeTimer = (strtotime(date('Y-m-d G:i:s')) - strtotime(get_the_time('Y-m-d G:
                     <div class="comt-author pull-left">
                         <?php
                         if (is_user_logged_in()) {
-                            printf($user_identity . ' <span>发表我的评论</span>');
+                            printf($user_identity . ' <span id="reply-label">发表我的评论</span>');
                         } else {
                             if (get_option('require_name_email') && !empty($comment_author_email)) {
-                                printf($comment_author . ' <span>发表我的评论</span> &nbsp; <a class="switch-author" href="javascript:;" data-type="switch-author" style="font-size:12px;">换个身份</a>');
+                                printf($comment_author . ' <span id="reply-label">发表我的评论</span> &nbsp; <a class="switch-author" href="javascript:;" data-type="switch-author" style="font-size:12px;">换个身份</a>');
                             } else {
-                                printf('发表我的评论');
+                                printf("发表我的评论");
                             }
                         }
                         ?>
@@ -66,7 +66,8 @@ $closeTimer = (strtotime(date('Y-m-d G:i:s')) - strtotime(get_the_time('Y-m-d G:
 
                 <div class="comt no_webshot">
                     <div class="comt-box">
-                        <textarea placeholder="写点什么..." class="input-block-level comt-area form-control" name="comment"
+                        <div id="comment_editor"></div>
+                        <textarea  style="display: none; " placeholder="写点什么..." class="input-block-level comt-area form-control" name="comment"
                                   id="comment" cols="100%" rows="3" tabindex="1"
                                   onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
                         <div class="comt-ctrl">
