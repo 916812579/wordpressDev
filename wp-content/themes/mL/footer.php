@@ -25,7 +25,6 @@
 //}
 get_css("/css/animate.min.css");
 get_css("/plugins/toastr/toastr.min.css");
-// get_js("/js/jQuery.textSlider.js");
 get_js("/js/mL.js");
 
 get_js("/plugins/toastr/toastr.min.js");
@@ -72,6 +71,7 @@ if (is_single()) {
     });
 
 </script>
+
 
 <?php // 下面是登录框  ?>
 
@@ -128,6 +128,6 @@ if (is_single()) {
     </div>
 </div>
 <?php // 登录框结束  ?>
-
+<div id="fakeLoader"></div>
 </body>
 </html>
