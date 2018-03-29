@@ -44,3 +44,15 @@ function loginSubmit() {
 $(document).on("show.bs.modal", ".modal", function(){
     $(this).draggable();
 });
+
+$(function () {
+    $("#loginModal").bind("keydown",function(e){
+        // 兼容FF和IE和Opera
+        var theEvent = e || window.event;
+        var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+        if (code == 13) {
+            //回车执行查询
+            $("#login_btn").click();
+        }
+    });
+});
