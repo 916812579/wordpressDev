@@ -2,6 +2,10 @@ function login_popup() {
     $("#loginModal").modal("show")
 }
 
+function login_hide() {
+    $("#loginModal").modal("hide")
+}
+
 $(".globalLoginBtn").on("click", login_popup),function() {
     var e = [];
     $(".modal").on("show.bs.modal",
@@ -16,3 +20,27 @@ $(".globalLoginBtn").on("click", login_popup),function() {
         o.html(t)
     })
 } ();
+
+function loginSubmit() {
+    // 参考： https://webapproach.net/wordpress-ajax-login-register.html https://www.cnblogs.com/huangcong/p/4773366.html
+    var data = {
+        action: 'ajaxlogin',
+        log: log.value,
+        pwd: pwd.value,
+        security: security.value
+    };
+    $.post(ajax_sign_object.ajaxurl, data, function(response) {
+        if (response.code != 0 || !response.loggedin) {
+            $("#login-form-tips").show();
+            $("#login-form-tips").html(response.message);
+        } else {
+            login_hide();
+            $("#login-form-tips").hide();
+            window.location.reload();
+        }
+    });
+}
+
+$(document).on("show.bs.modal", ".modal", function(){
+    $(this).draggable();
+});

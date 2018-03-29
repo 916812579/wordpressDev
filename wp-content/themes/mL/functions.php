@@ -526,7 +526,7 @@ function getSubStrTitle($post = 0, $maxLen = 12)
 {
     $title = "";
     if ($post) {
-        $title = $post -> post_title;
+        $title = $post->post_title;
     } else {
         $title = the_title('', '', false);
     }
@@ -616,10 +616,121 @@ function highlightKeyWord($s, $content)
 /**
  * 登录后跳转到首页
  */
-function custom_login_redirect($redirect_to, $request){
-    if( empty( $redirect_to ) || $redirect_to == 'wp-admin/' || $redirect_to == admin_url() )
+function custom_login_redirect($redirect_to, $request)
+{
+    if (empty($redirect_to) || $redirect_to == 'wp-admin/' || $redirect_to == admin_url())
         return home_url();
     else
         return $redirect_to;
 }
+
 add_filter("login_redirect", "custom_login_redirect", 10, 3);
+
+
+/* 获取当前页面url
+/* ---------------- */
+function ml_get_current_page_url()
+{
+    $ssl = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? true : false;
+    $sp = strtolower($_SERVER['SERVER_PROTOCOL']);
+    $protocol = substr($sp, 0, strpos($sp, '/')) . (($ssl) ? 's' : '');
+    $port = $_SERVER['SERVER_PORT'];
+    $port = ((!$ssl && $port == '80') || ($ssl && $port == '443')) ? '' : ':' . $port;
+    $host = isset($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
+    return $protocol . '://' . $host . $port . $_SERVER['REQUEST_URI'];
+}
+
+/* AJAX登录变量
+/* -------------- */
+function ajax_sign_object()
+{
+    $object = array();
+    $object[redirecturl] = ml_get_current_page_url();
+    $object[ajaxurl] = admin_url('/admin-ajax.php');
+    $object[loadingmessage] = '正在请求中，请稍等...';
+    $object_json = json_encode($object);
+    return $object_json;
+}
+
+/* AJAX登录验证
+/* ------------- */
+function ml_ajax_login()
+{
+    $result = array();
+    if (isset($_POST['security']) && wp_verify_nonce($_POST['security'], 'security_nonce')) {
+        $creds = array();
+        $creds['user_login'] = $_POST['log'];
+        $creds['user_password'] = $_POST['pwd'];
+        $creds['remember'] = (isset($_POST['remember'])) ? $_POST['remember'] : false;
+        // 处理登录
+        $login = wp_signon($creds, false);
+        if (!is_wp_error($login)) {
+            $result['loggedin'] = 1;
+        } else {
+            $result['message'] = "用户名或密码错误";
+                // ($login->errors) ? strip_tags($login->get_error_message()) : '<strong>ERROR</strong>: ' . esc_html__('用户名或密码错误', 'tinection');
+        }
+        $result['code'] = 0;
+    } else {
+        $result['message'] = __('安全认证失败，请重试！', 'tinection');
+        $result['code'] = 1;
+    }
+    header('content-type: application/json; charset=utf-8');
+    echo json_encode($result);
+    wp_die();
+}
+
+add_action('wp_ajax_ajaxlogin', 'ml_ajax_login');
+add_action('wp_ajax_nopriv_ajaxlogin', 'ml_ajax_login');
+
+/* AJAX注册验证
+/* ------------- */
+function ml_ajax_register()
+{
+    $result = array();
+    if (isset($_POST['security']) && wp_verify_nonce($_POST['security'], 'user_security_nonce')) {
+        $user_login = sanitize_user($_POST['username']);
+        $user_pass = $_POST['password'];
+        $user_email = apply_filters('user_registration_email', $_POST['email']);
+        $errors = new WP_Error();
+        if (!validate_username($user_login)) {
+            $errors->add('invalid_username', __('请输入一个有效用户名', 'tinection'));
+        } elseif (username_exists($user_login)) {
+            $errors->add('username_exists', __('此用户名已被注册', 'tinection'));
+        } elseif (email_exists($user_email)) {
+            $errors->add('email_exists', __('此邮箱已被注册', 'tinection'));
+        }
+        do_action('register_post', $user_login, $user_email, $errors);
+        $errors = apply_filters('registration_errors', $errors, $user_login, $user_email);
+        if ($errors->get_error_code()) {
+            $result['success'] = 0;
+            $result['message'] = $errors->get_error_message();
+
+        } else {
+            $user_id = wp_create_user($user_login, $user_pass, $user_email);
+            if (!$user_id) {
+                $errors->add('registerfail', sprintf(__('无法注册，请联系管理员', 'tinection'), get_option('admin_email')));
+                $result['success'] = 0;
+                $result['message'] = $errors->get_error_message();
+            } else {
+                update_user_option($user_id, 'default_password_nag', true, true); //Set up the Password change nag.
+                wp_new_user_notification($user_id, $user_pass);
+                $result['success'] = 1;
+                $result['message'] = esc_html__('注册成功', 'tinection');
+                //自动登录
+                wp_set_current_user($user_id);
+                wp_set_auth_cookie($user_id);
+                $result['loggedin'] = 1;
+            }
+
+        }
+    } else {
+        $result['message'] = __('安全认证失败，请重试！', 'tinection');
+    }
+    header('content-type: application/json; charset=utf-8');
+    echo json_encode($result);
+    exit;
+}
+
+add_action('wp_ajax_ajaxregister', 'ml_ajax_register');
+add_action('wp_ajax_nopriv_ajaxregister', 'ml_ajax_register');

@@ -696,7 +696,7 @@ html {
 
 #loginModal .threeLogin {
     position: absolute;
-    bottom: 15px;
+    bottom: 6px;
 }
 
 #loginModal .modal-body {
@@ -736,6 +736,17 @@ html {
 #btnForgetpsw {
     color: #5ecfba;
     margin-bottom: 4px;
+}
+
+#loginModal .tips-error {
+    display: none;
+    padding: 2px 0px;
+    margin-top: 4px;
+    text-align: center;
+}
+
+.tips-error {
+    color: #c00;
 }
 
 /** 登录框样式结束 ***/
