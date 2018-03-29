@@ -41,12 +41,12 @@
                         echo '<li><a class="ab-item" href="' . $control_url . '">控制台</a></li>';
                         echo '<li role="separator" class="divider"></li>';
                     }
-                    echo '<li><a href="' . esc_url(wp_logout_url()) . '">' . '退出' . '</a></li>';
+                    echo '<li><a href="' . esc_url(wp_logout_url(home_url())) . '">' . '退出' . '</a></li>';
                     echo '</ul>';
                     echo '</div>';
                     echo '</li>';
                 } else {
-                    echo "<li><a href='" . get_bloginfo('url') . "/wp-login.php'>登录</a></li>";
+                    echo "<li><a class='globalLoginBtn' >登录</a></li>";
                 } ?>
 
 

@@ -612,3 +612,14 @@ function highlightKeyWord($s, $content)
     $content = preg_replace('/(' . implode('|', $keys) . ')/iu', '<em>\0</em>', $content);
     return $content;
 }
+
+/**
+ * 登录后跳转到首页
+ */
+function custom_login_redirect($redirect_to, $request){
+    if( empty( $redirect_to ) || $redirect_to == 'wp-admin/' || $redirect_to == admin_url() )
+        return home_url();
+    else
+        return $redirect_to;
+}
+add_filter("login_redirect", "custom_login_redirect", 10, 3);
