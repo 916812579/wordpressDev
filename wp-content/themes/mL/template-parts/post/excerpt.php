@@ -1,4 +1,4 @@
-<article class="col-md-6 article fadeIn">
+<article class="col-md-6 article wow bounceInUp animated">
     <div class="thumbnail" title="<?php echo the_title(); ?>" data-toggle="tooltip" data-placement="top">
         <?php if (has_post_thumbnail()) { ?>
             <a href="<?php the_permalink(); ?>"><img

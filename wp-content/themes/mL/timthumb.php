@@ -587,8 +587,11 @@ class timthumb {
 		} else if ($zoom_crop == DEFAULT_ZC) {
 		    // 默认放缩为1,图片大小小余传递的大小时，直接返回原图
             if ($new_width > $width || $new_height > $height) {
-                $new_width = $width;
-                $new_height = $height;
+                $w_ratio = $new_width / $width;
+                $h_ratio = $new_height / $height;
+                $ratio = $w_ratio > $h_ratio ? $h_ratio : $w_ratio;
+                $new_width = $width * $ratio;
+                $new_height = $height * $ratio;
             }
         }
 

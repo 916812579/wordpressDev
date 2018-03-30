@@ -563,7 +563,6 @@ a:hover {
 .comt-comterinfo {
     padding: 20px 0 0 210px;
     color: #444;
-    display: none;
 }
 
 .comt-comterinfo h5 {
@@ -964,3 +963,17 @@ a:hover {
 }
 
 /***加载的动画结束**/
+
+#comt-error-tips {
+    margin-top: 6px;
+}
+
+.needLogin {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.needLogin a {
+    color: #e96900;
+}
+

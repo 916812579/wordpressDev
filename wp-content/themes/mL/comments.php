@@ -18,11 +18,9 @@ $count_t = $post->comment_count;
 date_default_timezone_set(PRC);
 $closeTimer = (strtotime(date('Y-m-d G:i:s')) - strtotime(get_the_time('Y-m-d G:i:s'))) / 86400;
 ?>
-<div id="respond" class="no_webshot panel panel-default">
+<div id="respond" class="no_webshot panel panel-default wow bounceInUp animated">
     <?php if (get_option('comment_registration') && !is_user_logged_in()) { ?>
-        <h3 class="queryinfo">
-            <?php printf('您必须 <a href="%s">登录</a> 才能发表评论！', wp_login_url(get_permalink())); ?>
-        </h3>
+        <?php echo '<div class="needLogin">您必须 <a class="globalLoginBtn" href="#">登录</a> 才能发表评论！</div>'; ?>
     <?php } elseif (get_option('close_comments_for_old_posts') && $closeTimer > get_option('close_comments_days_old')) { ?>
         <h3 class="queryinfo">
             文章评论已关闭！
@@ -60,6 +58,7 @@ $closeTimer = (strtotime(date('Y-m-d G:i:s')) - strtotime(get_the_time('Y-m-d G:
                     }
                     ?>
                 </div>
+                <div id="comt-error-tips" class="tips-error pull-left"></div>
                 <a id="cancel-comment-reply-link" class="pull-right" href="javascript:;"
                    style="display: none;">取消评论</a>
             </div>
@@ -113,7 +112,7 @@ $closeTimer = (strtotime(date('Y-m-d G:i:s')) - strtotime(get_the_time('Y-m-d G:
     <?php } ?>
 </div>
 
-<div id="postcomments" class="panel panel-default">
+<div id="postcomments" class="panel panel-default wow bounceInUp animated">
     <div id="comments">
         <i class="fa fa-comments-o"></i> <b><?php echo ' (' . $count_t . ')'; ?></b>个小伙伴在吐槽
     </div>

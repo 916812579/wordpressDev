@@ -112,11 +112,21 @@ $("#submit").click(function () {
 
     if (!$("#comment").val().trim()) {
         $("#comment").focus();
+        $("#comt-error-tips").html("评论内容不能为空");
         return false;
     }
 
-    if ($("#author").val() == "" || $("#email").val() == "") {
+    if ($("#author").length > 0 && ($("#author").val() == "" || $("#email").val() == "")) {
         $("#author").focus();
+        $("#comt-error-tips").html("昵称和邮箱不能为空");
+        return false;
+    }
+    $("#comt-error-tips").html("");
+
+    var emailReg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+    if ($("#author").length > 0 && !emailReg.test($("#email").val())) {
+        $("#comt-error-tips").html("邮箱格式不正确");
+        return false;
     }
 
     txt1 = '<div class="comt-tip comt-loading">正在提交, 请稍候...</div>',
@@ -137,7 +147,7 @@ $("#submit").click(function () {
         dataType: "text",
         error: function (request) {
             $(".comt-loading").hide();
-            $(".comt-error").show().html(request.responseText);
+            $("#comt-error-tips").html(request.responseText);
             setTimeout(function () {
                     $submit.attr("disabled", false).fadeTo("slow", 1);
                     $(".comt-error").fadeOut()
@@ -251,7 +261,6 @@ $(function () {
 });
 
 
-
 function preloader(immune, background, color) {
     $("body").prepend('<div class="preloader"><span class="loading-bar"></span><i class="radial-loader"></i></div>');
 
@@ -293,6 +302,8 @@ function preloader(immune, background, color) {
 };
 
 preloader(true, 'black', 'red');
+
+
 
 
 

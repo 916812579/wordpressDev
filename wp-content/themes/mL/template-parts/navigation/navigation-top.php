@@ -4,12 +4,12 @@
  */
 ?>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default wow bounceInDown animated">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
 
         <a class="navbar-brand logo"
-           href="<?php echo esc_url(home_url('/')); ?>">猿乐园</a>
+           href="<?php echo esc_url(home_url('/')); ?>"><?php echo get_option("blogname"); ?></a>
 
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

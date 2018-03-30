@@ -12,7 +12,7 @@ get_header();
         </div>
     </header>
     <main class="col-md-9 article-content-wrapper">
-        <article class="panel panel-default article-panel">
+        <article class="panel panel-default article-panel wow bounceInLeft animated">
             <?php if (have_posts()) : ?>
                 <?php
                 while (have_posts()) :
@@ -25,7 +25,7 @@ get_header();
             ?>
 
         </article>
-        <section class="panel panel-default">
+        <section class="panel panel-default wow bounceInUp animated">
             <?php include('modules/related.php'); ?>
         </section>
         <section>

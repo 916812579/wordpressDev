@@ -9,7 +9,7 @@
 <footer class="main-footer">
     <div class="copyright">
         <ul class="list-inline text-center">
-            <li>粤ICP备17069513号</li>
+            <li><?php echo get_option("zh_cn_l10n_icp_num"); ?></li>
             <li>Copyright © <a href="<?php bloginfo('url') ?>"><?php bloginfo("name") ?></a></li>
             <li><a href="https://wordpress.org/" target="_blank">Wordpress</a></li>
             <li><a href="https://www.aliyun.com/" target="_blank">阿里云</a></li>
@@ -35,6 +35,7 @@ get_js("/js/sosh-master/dist/sosh.min.js");
 
 get_js("/js/login/js/modal.js");
 get_js("/js/login/js/login.js");
+get_js("/js/wow/wow.min.js");
 
 ?>
 
@@ -128,6 +129,16 @@ if (is_single()) {
     </div>
 </div>
 <?php // 登录框结束  ?>
-<div id="fakeLoader"></div>
+<script type="application/javascript">
+    wow = new WOW(
+        {
+            animateClass: 'animated',
+            callback:     function(box) {
+                console.log("WOW: animating <" + box.tagName.toLowerCase() + ">");
+            }
+        }
+    );
+    wow.init();
+</script>
 </body>
 </html>

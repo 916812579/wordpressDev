@@ -309,7 +309,11 @@ function randomFromColorArray()
         '#006633',
         '#000000',
         '#33FF66',
-        '#336633');
+        '#336633',
+        '#31ac76',
+        '#31a6a0',
+        '#f85200',
+        '#c3010a');
     $len = count($colors);
     $idx = rand(0, $len - 1);
     return $colors[$idx];
@@ -668,7 +672,7 @@ function ml_ajax_login()
             $result['loggedin'] = 1;
         } else {
             $result['message'] = "用户名或密码错误";
-                // ($login->errors) ? strip_tags($login->get_error_message()) : '<strong>ERROR</strong>: ' . esc_html__('用户名或密码错误', 'tinection');
+            // ($login->errors) ? strip_tags($login->get_error_message()) : '<strong>ERROR</strong>: ' . esc_html__('用户名或密码错误', 'tinection');
         }
         $result['code'] = 0;
     } else {
@@ -734,3 +738,20 @@ function ml_ajax_register()
 
 add_action('wp_ajax_ajaxregister', 'ml_ajax_register');
 add_action('wp_ajax_nopriv_ajaxregister', 'ml_ajax_register');
+
+
+function mail_smtp($phpmailer)
+{
+    $phpmailer->From = "916812579@qq.com"; // 发件人
+    $phpmailer->FromName = bloginfo("name"); // 发件人昵称
+    $phpmailer->Host = "smtp.qq.com"; // SMTP服务器地址
+    $phpmailer->Port = 465; // SMTP端口，常用的有25、465、587，具体谷歌百度
+    $phpmailer->SMTPSecure = "ssl"; // SMTP加密方式，常用的有SSL/TLS，具体谷歌百度
+    $phpmailer->Username = "916812579@qq.com"; // 邮箱帐号
+    $phpmailer->Password = "oetyhinhmmpubdixjx"; // 邮箱密码
+    $phpmailer->IsSMTP(); // 使用SMTP发送
+    $phpmailer->SMTPAuth = true; // 启用SMTPAuth服务
+}
+
+add_action('phpmailer_init', 'mail_smtp');
+

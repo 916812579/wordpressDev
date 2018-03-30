@@ -1,7 +1,7 @@
 <?php
 ?>
 
-<aside id="sidebar" class="col-md-3 post-sidebar">
+<aside id="sidebar" class="col-md-3 post-sidebar wow bounceInRight animated">
     <?php if (is_home()) : ?>
         <div class="panel panel-default row site_summary">
             <a href="<?php echo esc_url(home_url('/')); ?>"><img class="site_img img-circle"
