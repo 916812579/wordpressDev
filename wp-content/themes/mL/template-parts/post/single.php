@@ -33,14 +33,28 @@
 <article class="article-content">
     <?php the_content(); ?>
     <div class="article-social">
-        <?php wp_custom_zan(); ?>
-    </div>
-    <?php // 分享功能，参考：https://github.com/calledT/sosh ?>
-    <div id="soshid-wrapper">
-        <div id="soshid"></div>
-    </div>
-</article>
 
+    </div>
+    <div id="z_s_s">
+        <div class="social-main">
+            <span class="like"><?php wp_custom_zan(); ?></span>
+            <span class="shang-p">
+                <a href="#pay_shang" id="shang-main-p">赏</a>
+            <div class="ds-dialog">
+
+            </div>
+            </span>
+            <span class="share-s">
+                <a id="share-main-s"><i class="fa fa-share-alt"></i> 分享</a>
+                <?php // 分享功能，参考：https://github.com/calledT/sosh ?>
+                <div id="soshid" style="display: none;"></div>
+            </span>
+        </div>
+    </div>
+
+</article>
+<div class="clear"></div>
+<div></div>
 <?php
 $tags = wp_get_post_tags($post->ID);
 if (!empty($tags)) :

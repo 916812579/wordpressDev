@@ -353,14 +353,14 @@ function wp_custom_zan($odc = false)
 
     $user_ID = $user_ID ? $user_ID : 0;
     $wpzan = new wpzan(get_the_ID(), $user_ID);
-    $class = $wpzan->is_zan() ? 'wp-zan zaned' : 'wp-zan';
+    $class = $wpzan->is_zan() ? 'wp_zaned' : '';
     $userId = $wpzan->is_loggedin ? $wpzan->user_id : 0;
     $postId = $wpzan->post_id;
 
     $action = "wpzan($postId, $userId)";
 
-    $btn_html = $odc ? '<a id="wp-zan-%d" class="%s addLike img-circle" onclick="%s" href="javascript:;"><span>%d</span></a>' : '<a id="wp-zan-%d" class="%s addLike img-circle" onclick="%s" href="javascript:;"></i>赞 (<span>%d</span>)</a>';
-    $button = sprintf($btn_html, $postId, $class . " action zan", $action, $wpzan->zan_count);
+    $btn_html = '<a id="wp-zan-%d" class="%s " onclick="%s" href="javascript:;"><i class="fa fa-thumbs-up"></i>赞 <span>%d</span></a>';
+    $button = sprintf($btn_html, $postId, $class . " ", $action, $wpzan->zan_count);
 
     echo $button;
 }

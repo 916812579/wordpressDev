@@ -393,18 +393,6 @@ a:hover {
     text-align: center;
 }
 
-.article-social a, .wp-zan.zaned {
-    background-color: #e96900;
-    width: 80px;
-    height: 80px;
-    display: inline-block;
-    text-align: center;
-    line-height: 80px;
-    color: #FFF !important;
-    font-size: 16px;
-    box-shadow: 1px 5px 5px #888888;
-    border: solid 1px #e96900;
-}
 
 /** 评论相关样式开始  **/
 #respond {
@@ -770,6 +758,7 @@ a:hover {
     top: 17px;
     left: -7px;
 }
+
 .c-main::before, .d_comment div.muted::before {
     content: '';
     display: inline-block;
@@ -790,7 +779,6 @@ a:hover {
         -webkit-filter: hue-rotate(-360deg);
     }
 }
-
 
 /***加载的动画开始**/
 .preloader {
@@ -878,6 +866,7 @@ a:hover {
     border-color: #f1c40f !important;
     border-right-color: transparent !important;
 }
+
 /* Animations */
 
 @-moz-keyframes loading-bar {
@@ -977,3 +966,96 @@ a:hover {
     color: #e96900;
 }
 
+/** 分享赞**/
+#z_s_s {
+    border-bottom: none;
+    padding: 20px 0;
+    margin-top: 60px;
+}
+
+.social-main {
+    position: relative;
+    margin: 0 auto;
+    width: 283px;
+}
+
+.social-main a {
+    float: left;
+    color: #fff;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.social-main a:hover, .social-main  .wp_zaned {
+    background: #878787;
+    transition: all .2s ease-in 0s;
+}
+
+.like a {
+    background: #fe594e;
+    width: 140px;
+    display: block;
+}
+
+.share-s a {
+    background: #fd8764;
+    width: 140px;
+    display: block;
+}
+
+.social-main i {
+    color: #fff;
+    font-style: normal;
+    margin: 0 5px 0 0;
+}
+
+.shang-p a {
+    position: absolute;
+    left: 115px;
+    top: -7px;
+    background: #7ab951;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 40px;
+    border: 4px solid #fff;
+    border-radius: 40px;
+}
+
+#share {
+    display: none;
+    width: 280px;
+    padding: 15px 13px 15px 30px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+#share a {
+    font-size: 60px;
+    text-align: center;
+    height: 80px;
+    line-height: 80px;
+    padding: 2px 5px 5px;
+}
+
+.social-main a:hover {
+    text-decoration: none;
+}
+
+#soshid {
+    position: absolute;
+    top: -80px;
+    right: -29px;
+    width: 302px;
+    height: 68px;
+    display: none;
+    z-index: 999;
+}
+
+/*分享赞**/
+
+.article-footer {
+    margin-top: 20px;
+}
