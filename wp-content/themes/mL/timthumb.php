@@ -584,7 +584,13 @@ class timthumb {
 				$new_height = $final_height;
 			}
 
-		}
+		} else if ($zoom_crop == DEFAULT_ZC) {
+		    // 默认放缩为1,图片大小小余传递的大小时，直接返回原图
+            if ($new_width > $width || $new_height > $height) {
+                $new_width = $width;
+                $new_height = $height;
+            }
+        }
 
 		// create a new true color image
 		$canvas = imagecreatetruecolor ($new_width, $new_height);
