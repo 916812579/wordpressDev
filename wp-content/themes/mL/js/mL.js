@@ -289,12 +289,12 @@ function preloader(immune, background, color) {
         $("body > div.preloader span.loading-bar").addClass('yellow-colored');
         $("body > div.preloader i.radial-loader").addClass('yellow-colored');
     }
-    $(window).on("load", function() {
+    $(window).on("load", function () {
         var preloader = $('.preloader');
-        setTimeout(function() {
+        setTimeout(function () {
             preloader.fadeOut(1000);
         }, 1000);
-        setTimeout(function() {
+        setTimeout(function () {
             preloader.remove();
         }, 2000);
 
@@ -302,6 +302,31 @@ function preloader(immune, background, color) {
 };
 
 preloader(true, 'black', 'red');
+
+$(function () {
+    $(".share-s").mouseover(function () {
+        $(this).children("#soshid").show();
+    });
+    $(".share-s").mouseout(function () {
+        $(this).children("#soshid").hide();
+    });
+
+    $(".shang-p").mouseover(function () {
+        $(this).children(".shang_box").show();
+    });
+    $(".shang-p").mouseout(function () {
+        $(this).children(".shang_box").hide();
+    });
+});
+
+$(function () {
+    $(".pay_item").click(function () {
+        $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+        var dataid = $(this).attr('data-id');
+        $(".shang_payimg img").attr("src", theme_context_path + "/images/" + dataid + "-img.png");
+        $("#shang_pay_txt").text(dataid == "alipay" ? "支付宝" : "微信");
+    });
+});
 
 
 

@@ -87,7 +87,7 @@ function imageToBig(images) {
 	}
 }
 
-imageToBig($(".article-content img"));
+imageToBig($(".post-content img"));
 
 
 

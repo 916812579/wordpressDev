@@ -59,6 +59,8 @@
             commenton: <?php echo $commenton ?>,
             roll: [<?php echo $sr_1 ?>,<?php echo $sr_2 ?>]
         }
+
+        var theme_context_path = "<?php echo get_bloginfo('template_url');?>";
     </script>
 
     <script>

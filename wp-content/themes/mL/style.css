@@ -352,6 +352,7 @@ a:hover {
 
 .meta .meta-ele {
     margin-left: 16px;
+    font-family: georgia;
 }
 
 .article-content p {
@@ -1046,7 +1047,7 @@ a:hover {
 
 #soshid {
     position: absolute;
-    top: -80px;
+    top: -90px;
     right: -29px;
     width: 302px;
     height: 68px;
@@ -1059,3 +1060,94 @@ a:hover {
 .article-footer {
     margin-top: 20px;
 }
+
+.shang_box {
+    position: absolute;
+    top: -432px;
+    right: -70px;
+}
+
+.shang_box_content {
+    padding: 10px;
+    border: solid 1px #ccc;
+    padding: 20px;
+    background-color: #FFF;
+    border-radius: 10px;
+    z-index: 999;
+    width: 420px;
+    height: 400px;
+    margin-bottom: 32px;
+}
+
+.shang_payimg {
+    width: 170px;
+    padding: 10px;
+    border: 6px solid #EA5F00;
+    margin: 0 auto;
+    border-radius: 3px;
+    height: 170px;
+}
+
+.shang_tit p {
+    color: #a3a3a3;
+    text-align: center;
+    font-size: 16px;
+}
+
+.shang_tit {
+    width: 100%;
+    height: 75px;
+    text-align: center;
+    line-height: 66px;
+    color: #a3a3a3;
+    font-size: 16px;
+    font-family: 'Microsoft YaHei';
+    margin-top: 7px;
+    margin-right: 2px;
+}
+
+.shang_payimg img {
+    display: block;
+    text-align: center;
+    width: 140px;
+    height: 140px;
+}
+.shang_box img {
+    border: none;
+    border-width: 0;
+}
+
+.shang_payselect {
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 40px;
+    cursor: pointer;
+    height: 60px;
+    width: 280px;
+}
+
+.shang_payselect .pay_item {
+    display: inline-block;
+    margin-right: 10px;
+    float: left;
+}
+
+.pay_explain {
+    text-align: center;
+    margin: 10px auto;
+    font-size: 12px;
+    color: #545454;
+}
+
+.shang_info {
+    margin-top: 4px;
+}
+.shang_info p, .shang_info a {
+    color: #C3C3C3;
+    text-align: center;
+    font-size: 12px;
+    text-decoration: none;
+    line-height: 2em;
+}
+
+

@@ -31,18 +31,41 @@
 </div>
 
 <article class="article-content">
-    <?php the_content(); ?>
-    <div class="article-social">
-
+    <div class="post-content">
+        <?php the_content(); ?>
     </div>
     <div id="z_s_s">
         <div class="social-main">
             <span class="like"><?php wp_custom_zan(); ?></span>
             <span class="shang-p">
                 <a href="#pay_shang" id="shang-main-p">赏</a>
-            <div class="ds-dialog">
-
-            </div>
+                <div id="shang_box" class="shang_box wow animated bounceInUp" style="display: none;">
+                    <div class="shang_box_content">
+                            <div class="shang_tit">
+                                <p>感谢您的支持，我会继续努力的!</p>
+                            </div>
+                            <div class="shang_payimg">
+                                <img src="<?php echo get_bloginfo('template_url'); ?>/images/alipay-img.png" alt="扫码支持" title="扫一扫">
+                            </div>
+                            <div class="pay_explain">扫码打赏，你说多少就多少</div>
+                            <div class="shang_payselect">
+                                <div class="pay_item checked" data-id="alipay">
+                                    <span class="radiobox"></span>
+                                    <span class="pay_logo"><img
+                                                src="<?php echo get_bloginfo('template_url') ?>/images/alipay.jpg" alt="支付宝"></span>
+                                </div>
+                                <div class="pay_item" data-id="weipay">
+                                    <span class="radiobox"></span>
+                                    <span class="pay_logo"><img
+                                                src="<?php echo get_bloginfo('template_url') ?>/images/wechat.jpg" alt="微信"></span>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="shang_info">
+                                    <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+                                </div>
+                            </div>
+                        </div>
+                </div>
             </span>
             <span class="share-s">
                 <a id="share-main-s"><i class="fa fa-share-alt"></i> 分享</a>
@@ -89,5 +112,22 @@ if (!empty($tags)) :
             <i class="fa fa-angle-double-right"></i></span>
     <?php endif; ?>
 </nav>
+
+<style type="text/css">
+    .radiobox {
+        width: 16px;
+        height: 16px;
+        background: url(<?php echo get_bloginfo('template_url') ?>/images/radio2.jpg);
+        display: block;
+        float: left;
+        margin-top: 5px;
+        margin-right: 14px;
+    }
+
+    .checked .radiobox {
+        background: url(<?php echo get_bloginfo('template_url') ?>/images/radio1.jpg);
+    }
+
+</style>
 
 
