@@ -216,7 +216,7 @@ function get_hot_comments_posts($limit)
 function wp_zan_count($odc = false)
 {
     global $user_ID;
-    get_currentuserinfo();
+    wp_get_current_user();
 
     $user_ID = $user_ID ? $user_ID : 0;
     $wpzan = new wpzan(get_the_ID(), $user_ID);
@@ -340,7 +340,7 @@ function getCat($post_id)
 function wp_zan_html_class()
 {
     global $user_ID;
-    get_currentuserinfo();
+    wp_get_current_user();
 
     $user_ID = $user_ID ? $user_ID : 0;
     $wpzan = new wpzan(get_the_ID(), $user_ID);
@@ -351,7 +351,7 @@ function wp_zan_html_class()
 function wp_custom_zan($odc = false)
 {
     global $user_ID;
-    get_currentuserinfo();
+    wp_get_current_user();
 
     $user_ID = $user_ID ? $user_ID : 0;
     $wpzan = new wpzan(get_the_ID(), $user_ID);

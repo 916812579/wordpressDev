@@ -13,9 +13,9 @@ class weibo extends core {
 		if ($this->is_activated($this->slug)) {
 			add_action( 'admin_menu', array($this, 'admin_menu') );
 
-			add_action( 'qqworld_passport_login_form_buttons', array($this, 'login_form_button') ); // 登录页的表单
-			add_action( 'qqworld_passport_social_media_account_profile_form', array($this, 'profile_form') ); // 个人资料以及woocommerce个人资料页面的表单
-			add_action( 'qqworld_passport_parse_request_'.$this->slug, array($this, 'parse_request') ); // 处理登录页回调的信息
+			add_action( 'qqworld_passport_login_form_buttons', array($this, 'login_form_button') ); // ???????
+			add_action( 'qqworld_passport_social_media_account_profile_form', array($this, 'profile_form') ); // ???????????woocommerce?????????????
+			add_action( 'qqworld_passport_parse_request_'.$this->slug, array($this, 'parse_request') ); // ???????????????
 
 			add_filter( 'qqworld-passport-openids', array($this, 'openids'), 10, 2 );
 		}
@@ -91,7 +91,7 @@ class weibo extends core {
 
 		$code = $_GET['code'];
 
-		// Step2：通过Authorization Code获取Refresh Token
+		// Step2?????Authorization Code???Refresh Token
 		$redirect_url = home_url('wp-json/qqworld-passport/v1/module/'.$this->slug.'/');
 		$params = array(
 			'grant_type'=>'authorization_code',
@@ -119,7 +119,7 @@ class weibo extends core {
 			}
 		} else $user_login = false;
 
-		//Step4：使用OpenID来获取用户的个人信息
+		//Step4?????OpenID????????????????
 		$request = "https://api.weibo.com/2/users/show.json?access_token={$access_token}&uid={$uid}";
 		$response = $this->curl($request);
 
@@ -132,9 +132,9 @@ class weibo extends core {
 			"nickname": "punk", 
 			"sex": 1, 
 			"language": "zh_CN", 
-			"city": "广州", 
-			"province": "广东", 
-			"country": "中国", 
+			"city": "????", 
+			"province": "??", 
+			"country": "?泄?", 
 			"headimgurl":    "xxx", 
 			"headimgurl_large":    "xxx", 
 			"headimgurl_hd":    "xxx", 
@@ -164,7 +164,7 @@ class weibo extends core {
 				$user_id = $this->get_current_user_id();
 			}
 			if (isset($user_id) && $user_id) {
-				// 清除所有其他可能包含QQWorld Passport Weibo Uid的用户的这个meta
+				// ??????????????????QQWorld Passport Weibo Uid??????????meta
 				$this->delete_user_meta($user_id, 'QQWorld Passport Weibo Uid', $uid);
 				update_user_meta( $user_id, 'QQWorld Passport Weibo Uid', $uid );
 				if ($avatar) update_user_meta( $user_id, 'QQWorld Passport Avatar', set_url_scheme($avatar) );
