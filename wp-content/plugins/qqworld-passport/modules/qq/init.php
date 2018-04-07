@@ -56,7 +56,7 @@ class qq extends core {
 			<th><label for="bind-qq-account-btn"><?php _e('Tencent QQ', $this->text_domain); ?></label></th>
 			<td>
 			<?php
-				$url = get_profile_url();
+				$url = self::get_profile_url();
 				$openid = get_user_meta( $profileuser->ID, 'QQWorld Passport QQ Openid', true );
 				if (empty($openid)) {
 ?>
