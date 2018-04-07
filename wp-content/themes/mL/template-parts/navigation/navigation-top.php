@@ -31,7 +31,7 @@
                     echo '<li>';
                     echo '<div class="dropdown-toggle">';
                     echo '<span class="dropdown-toggle"  id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">';
-                    echo get_avatar($current_user->user_email, 28, deel_avatar_default(), "", null);
+                    echo get_avatar($uid, 28, deel_avatar_default(), "", null);
                     echo '</span>';
                     echo '<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">';
                     echo '<li><a href="#">欢迎 ' . $u_name . '</a></li>';
