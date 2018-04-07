@@ -120,7 +120,9 @@ if (is_single()) {
                         <div class="threeLogin">
                             <span>其他方式登录</span>
                             <a class="nqq" href="<?php global $core; echo $core->qq->get_profile_url(); ?>"></a>
+                            <!--
                             <a class="nwx" href="<?php global $core; echo $core->wechat->get_profile_url(); ?>"></a>
+                            -->
                         </div>
                     </section>
                 </div>
