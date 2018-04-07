@@ -81,6 +81,18 @@
 
     </script>
     <?php header("Access-Control-Allow-Origin:*"); ?>
+
+    <script type="application/javascript">
+        // 百度流浪统计
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?0bffbc76de36f90c7869655ef84d5f44";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
 </head>
 <body class=" post_body">
 <header class="header">
