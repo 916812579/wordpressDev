@@ -13,9 +13,9 @@ class qq extends core {
 		if ($this->is_activated($this->slug)) {
 			add_action( 'admin_menu', array($this, 'admin_menu') );
 
-			add_action( 'qqworld_passport_login_form_buttons', array($this, 'login_form_button') ); // µÇÂ¼Ò³µÄ±íµ¥
-			add_action( 'qqworld_passport_social_media_account_profile_form', array($this, 'profile_form') ); // ¸öÈË×ÊÁÏÒ³ÃæµÄ±íµ¥
-			add_action( 'qqworld_passport_parse_request_'.$this->slug, array($this, 'parse_request') ); // ´¦ÀíµÇÂ¼Ò³»Øµ÷µÄÐÅÏ¢
+			add_action( 'qqworld_passport_login_form_buttons', array($this, 'login_form_button') ); // ï¿½ï¿½Â¼Ò³ï¿½Ä±ï¿½
+			add_action( 'qqworld_passport_social_media_account_profile_form', array($this, 'profile_form') ); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½Ä±ï¿½
+			add_action( 'qqworld_passport_parse_request_'.$this->slug, array($this, 'parse_request') ); // ï¿½ï¿½ï¿½ï¿½ï¿½Â¼Ò³ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 
 			add_filter( 'qqworld-passport-openids', array($this, 'openids'), 10, 2 );
 		}
@@ -39,6 +39,16 @@ class qq extends core {
 		$icon_url = 'none';
 		$settings_page = add_submenu_page($this->text_domain, $page_title, $menu_title, $capability, $menu_slug, $function);
 	}
+
+    public function get_profile_url() {
+        $appid = $this->options->moudule_qq_appid;
+        $redirect_uri = urlencode($this->redirect_uri);
+        $scope = 'get_user_info,list_album,upload_pic,do_like';
+        $_SESSION['qq_state'] = md5(uniqid(rand(), TRUE));
+        $state = $_SESSION['qq_state'];
+        $url = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id='.$appid.'&redirect_uri='.$redirect_uri.'&scope='.$scope.'&state='.$state;
+        return $url;
+    }
 
 	public function profile_form($profileuser) {
 ?>
@@ -64,15 +74,7 @@ class qq extends core {
 <?php
 	}
 
-	public function get_profile_url() {
-        $appid = $this->options->moudule_qq_appid;
-        $redirect_uri = urlencode($this->redirect_uri);
-        $scope = 'get_user_info,list_album,upload_pic,do_like';
-        $_SESSION['qq_state'] = md5(uniqid(rand(), TRUE));
-        $state = $_SESSION['qq_state'];
-        $url = 'https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id='.$appid.'&redirect_uri='.$redirect_uri.'&scope='.$scope.'&state='.$state;
-        return $url;
-    }
+
 
 
 	public function is_openid_exists($openid) {
@@ -101,7 +103,7 @@ class qq extends core {
 
 		$code = $_GET['code'];
 		$redirect_uri = urlencode($this->redirect_uri);
-		// Step2£ºÍ¨¹ýAuthorization Code»ñÈ¡Refresh Token
+		// Step2ï¿½ï¿½Í¨ï¿½ï¿½Authorization Codeï¿½ï¿½È¡Refresh Token
 		$request = "https://graph.qq.com/oauth2.0/token?grant_type=authorization_code&client_id={$this->options->moudule_qq_appid}&client_secret={$this->options->moudule_qq_appkey}&code={$code}&redirect_uri={$redirect_uri}";
 		$response = file_get_contents($request);
 		if (strpos($response, "callback") !== false) { // check error
@@ -118,7 +120,7 @@ class qq extends core {
 		}
 		$params = array();
 		parse_str($response, $params);
-		//Step3£ºÊ¹ÓÃRefresh TokenÀ´»ñÈ¡ÓÃ»§µÄAccess Token
+		//Step3ï¿½ï¿½Ê¹ï¿½ï¿½Refresh Tokenï¿½ï¿½ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½Access Token
 		$request = "https://graph.qq.com/oauth2.0/token?grant_type=refresh_token&client_id={$this->options->moudule_qq_appid}&client_secret={$this->options->moudule_qq_appkey}&refresh_token={$params['refresh_token']}";
 		$str = file_get_contents($request);
 		if (strpos($str, "callback") !== false) { // check error
@@ -135,7 +137,7 @@ class qq extends core {
 		}
 		$params = array();
 		parse_str($str, $params);
-		//Step3£ºÊ¹ÓÃAccess TokenÀ´»ñÈ¡ÓÃ»§µÄOpenID
+		//Step3ï¿½ï¿½Ê¹ï¿½ï¿½Access Tokenï¿½ï¿½ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½OpenID
 		$request = "https://graph.qq.com/oauth2.0/me?access_token={$params['access_token']}";
 		$str = file_get_contents($request);
 		if (strpos($str, "callback") !== false) {
@@ -161,7 +163,7 @@ class qq extends core {
 			}
 		} else $user_login = false;
 
-		//Step4£ºÊ¹ÓÃOpenIDÀ´»ñÈ¡ÓÃ»§µÄ¸öÈËÐÅÏ¢
+		//Step4ï¿½ï¿½Ê¹ï¿½ï¿½OpenIDï¿½ï¿½ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 		$request = "https://graph.qq.com/user/get_user_info?access_token={$params['access_token']}&oauth_consumer_key={$this->options->moudule_qq_appid}&openid={$openid}";
 		$str = file_get_contents($request);
 		$user = json_decode($str);
@@ -171,9 +173,9 @@ class qq extends core {
 			[msg] => 
 			[is_lost] => 0 
 			[nickname] => THE WORLD/v 
-			[gender] => ÄÐ 
-			[province] => ºþ±± 
-			[city] => Îäºº 
+			[gender] => ï¿½ï¿½ 
+			[province] => ï¿½ï¿½ï¿½ï¿½ 
+			[city] => ï¿½äºº 
 			[year] => 1980 
 			[figureurl] => http://qzapp.qlogo.cn/qzapp/101167451/1AE4F969E5C10DA92F0B17E21BC7031B/30
 			[figureurl_1] => http://qzapp.qlogo.cn/qzapp/101167451/1AE4F969E5C10DA92F0B17E21BC7031B/50
@@ -193,7 +195,7 @@ class qq extends core {
 			echo "<p>msg: <strong>{$user->msg}</strong></p>";
 			exit;
 		}
-		//Setp5£ºLogin & Regisger
+		//Setp5ï¿½ï¿½Login & Regisger
 		$nickname = $user->nickname;
 		$avatar = isset($user->figureurl_qq_2) ? $user->figureurl_qq_2 : $user->figureurl_2;
 
@@ -216,7 +218,7 @@ class qq extends core {
 				$user_id = $this->get_current_user_id();
 			}
 			if (isset($user_id) && $user_id) {
-				// Çå³ýËùÓÐÆäËû¿ÉÄÜ°üº¬'QQWorld Passport QQ Openid'µÄÓÃ»§µÄÕâ¸ömeta
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü°ï¿½ï¿½ï¿½'QQWorld Passport QQ Openid'ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½meta
 				$this->delete_user_meta($user_id, 'QQWorld Passport QQ Openid', $openid);
 				update_user_meta( $user_id, 'QQWorld Passport QQ Openid', $openid );
 				update_user_meta( $user_id, 'QQWorld Passport Avatar', set_url_scheme($avatar) );
