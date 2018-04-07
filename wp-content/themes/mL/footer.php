@@ -109,8 +109,9 @@ if (is_single()) {
                             <?php
                             if (get_option('users_can_register')) :
                             ?>
+                            <!--
                             还没有账号？<a
-                                    href="javascript:;" target="_blank" id="btnRegister">立即注册</a></p>
+                                    href="javascript:;" target="_blank" id="btnRegister">立即注册</a></p>-->
                         <?php endif; ?>
                         <div class="login-box marginB10">
                             <input id="login_btn" type="submit" onclick="javascript:loginSubmit();" value="登录"
