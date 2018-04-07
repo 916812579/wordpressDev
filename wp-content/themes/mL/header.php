@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js no-svg">
 <head>
-    <?php $charset =  get_bloginfo( "", 'display' );?>
+    <?php $charset =  get_bloginfo("charset");?>
 
     <meta name="baidu_union_verify"
           content="c8f70520af4aa3d3549a78c0508fb377">
