@@ -3,17 +3,18 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="no-js no-svg">
 <head>
+    <?php $charset =  get_bloginfo( "", 'display' );?>
 
     <meta name="baidu_union_verify"
           content="c8f70520af4aa3d3549a78c0508fb377">
     <meta name="360-site-verification"
           content="90fcad26cd20548190701436b8a50e11"/>
     <meta name="sogou_site_verification" content="xrRpH3BikJ"/>
-    <meta charset="<?php bloginfo('charset'); ?>"/>
+    <meta charset="<?php echo $charset; ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <?php
-    header("content-type:text/html;charset=<?php bloginfo('charset'); ?>");
+    header("content-type:text/html;charset=" . $charset);
     get_js("/jquery-3.2.1/jquery-3.2.1.min.js");
     getSeo();
     global $description;
