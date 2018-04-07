@@ -38,7 +38,7 @@
      // 具体生成目录
      var levels = generateLevel(target, level, "")
      if (levels) { 
-        var title = "<h1 class='catelog_title'>" + title + "</h1>";
+        var title = "<h3 class='catelog_title'>" + title + "</h3>";
         var div = $("<div class='div_category'></div>");
         div.prepend(levels);
         div.prepend(title);
