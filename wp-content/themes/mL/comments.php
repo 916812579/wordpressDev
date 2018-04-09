@@ -87,7 +87,7 @@ $closeTimer = (strtotime(date('Y-m-d G:i:s')) - strtotime(get_the_time('Y-m-d G:
                     <?php if (get_option('require_name_email')) { ?>
                         <div class="comt-comterinfo"
                              id="comment-author-info" <?php if (!empty($comment_author)) echo 'style="display:none"'; ?>>
-                            <span>Hi，您需要填写昵称和邮箱！</span>
+                            <div>Hi，您需要填写昵称和邮箱！</div>
                             <ul>
                                 <li class="form-inline"><label class="hide" for="author">昵称</label><input
                                             class="ipt form-control" type="text" name="author" id="author"
