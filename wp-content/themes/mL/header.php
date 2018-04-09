@@ -96,7 +96,7 @@
 
 </head>
 <body class=" post_body">
-<header class="header">
+<header class="header wow bounceInDown animated">
     <?php get_template_part('template-parts/header/header', 'image'); ?>
     <?php if (has_nav_menu('top')) : ?>
         <?php

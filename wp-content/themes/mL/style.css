@@ -973,6 +973,7 @@ a:hover {
     border-bottom: none;
     padding: 20px 0;
     margin-top: 60px;
+    margin-bottom: 60px;
 }
 
 .social-main {
@@ -1059,7 +1060,7 @@ a:hover {
 /*分享赞**/
 
 .article-footer {
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .shang_box {
@@ -1163,7 +1164,7 @@ a:hover {
     margin-left: 28px;
 }
 
-.article-content img {
+.post-content img {
     width: 100%;
 }
 
@@ -1182,5 +1183,18 @@ h1, h2, h3, h4, h5, h6 {
     list-style: none;
 }
 
+.post_info a i {
+    color: #FFF;
+}
 
+.badge span{
+    font-family: georgia;
+}
+
+.caption h3 {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
