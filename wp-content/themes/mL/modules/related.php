@@ -51,7 +51,7 @@ if (have_posts()) :
                     title="<?php echo get_the_title($post); ?>"
                     data-toggle="tooltip"
                     data-placement="top"
-                    href="<?php the_permalink($rand_post); ?>"><?php $rand_post->post_title; ?></a>
+                    href="<?php the_permalink($rand_post); ?>"><?php echo $rand_post->post_title; ?></a>
         </li>
         <?php
         $count++;
