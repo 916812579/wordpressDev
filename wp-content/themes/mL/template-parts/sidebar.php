@@ -74,9 +74,9 @@
                                 data-placement="top"
                                 href="<?php the_permalink($rand_post); ?>"><?php
                             if (is_search()) {
-                                echo highlightKeyWord($s, getSubStrTitle($rand_post));
+                                echo highlightKeyWord($s, $rand_post->title);
                             } else {
-                                subStrTitle($rand_post);
+                                echo $rand_post->title;
                             }
 
                             ?></a>
