@@ -555,7 +555,7 @@ a:hover {
     color: #444;
 }
 
-.comt-comterinfo h5 {
+.comt-comterinfo .hi-tips {
     float: left;
     width: 190px;
     line-height: 100px;
