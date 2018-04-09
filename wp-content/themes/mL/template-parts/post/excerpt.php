@@ -43,14 +43,14 @@
                 ?></p>
             <p class="post_info">
                 <span><i class="fa fa-clock-o"></i><?php echo timeago(get_gmt_from_date(get_the_time('Y-m-d G:i:s'))) ?></span>
-                <a href="#"><i class="fa fa-comments-o"></i> <span
-                            class="badge"><?php echo $post->comment_count; ?></span></a>
+                <a href="#"> <span
+                            class="badge"><i class="fa fa-comments-o"></i><?php echo $post->comment_count; ?></span></a>
                 &nbsp;&nbsp;
-                <a href="#"><i class="fa fa-heart-o"></i><span
-                            class="badge"><?php wp_zan_count(); ?></span></a>
+                <a href="#"><span
+                            class="badge"><i class="fa fa-heart-o"></i><?php wp_zan_count(); ?></span></a>
                 &nbsp;&nbsp;
-                <a href="#"><i class="fa fa-eye"></i><span
-                            class="badge"><?php deel_views('℃'); ?></span></a>
+                <a href="#"><span
+                            class="badge"><i class="fa fa-eye"></i><?php deel_views('℃'); ?></span></a>
                 &nbsp;&nbsp;
             </p>
         </div>
