@@ -378,6 +378,7 @@ a:hover {
     border-radius: 2px;
     font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
     background-color: #f8f8f8;
+    word-wrap: break-word;
 }
 
 .article-content h1, .article-content h2, .article-content h3, .article-content h4, .article-content h5, .article-content h6, .article-content h7 {
@@ -1160,6 +1161,10 @@ a:hover {
 
 .div_category  li ul {
     margin-left: 28px;
+}
+
+.article-content img {
+    width: 100%;
 }
 
 
