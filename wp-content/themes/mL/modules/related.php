@@ -47,11 +47,11 @@ if (have_posts()) :
     $count = 1;
     foreach ($odd as $post) :
         ?>
-        <li class="list-group-item post"><span class="count_seq"><?php echo 2 * $count; ?></span><a
-                    title="<?php echo $post->post_title; ?>"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    href="<?php the_permalink($post); ?>"><?php echo $post->post_title; ?></a>
+        <li class="list-group-item post" title="<?php echo $post->post_title; ?>"
+            data-toggle="tooltip"
+            data-placement="top"
+            href="<?php the_permalink($post); ?>"><span class="count_seq"><?php echo 2 * $count; ?></span><a
+                    ><?php echo $post->post_title; ?></a>
         </li>
         <?php
         $count++;
