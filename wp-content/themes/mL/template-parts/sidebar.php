@@ -68,8 +68,8 @@
                 foreach ($rand_posts as $rand_post) :
                     $count++;
                     ?>
-                    <li class="list-group-item"><span class="count_seq"><?php echo $count; ?></span><a
-                                title="<?php echo get_the_title($rand_post); ?>"
+                    <li class="list-group-item post"><span class="count_seq"><?php echo $count; ?></span><a
+                                title="<?php echo $rand_post->post_title; ?>"
                                 data-toggle="tooltip"
                                 data-placement="top"
                                 href="<?php the_permalink($rand_post); ?>"><?php
