@@ -362,7 +362,7 @@ a:hover {
 }
 
 .article-nav {
-    margin-top: 20px;
+    margin-top: 66px;
     font-size: 16px;
 }
 
@@ -1162,5 +1162,23 @@ a:hover {
     margin-left: 28px;
 }
 
+strong {
+    margin: 0 2px;
+    color: #e96900;
+    padding: 3px 5px;
+    font-size: 1em;
+    border-radius: 2px;
+    font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+    background-color: #f8f8f8;
+    word-wrap: break-word;
+}
+
+.post-content h3{
+    background: rgba(30, 136, 229, 0.83);
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 2px;
+    color: #fff;
+}
 
 
