@@ -24,9 +24,9 @@
                 ?>
                 <a class="post_title_link" href="<?php the_permalink(); ?>"><?php
                     if (is_search()) {
-                        echo highlightKeyWord($s, getSubStrTitle());
+                        echo highlightKeyWord($s, the_title());
                     } else {
-                        subStrTitle();
+                        the_title();
                     }
                     ?></a>
             </h3>
@@ -43,14 +43,14 @@
                 ?></p>
             <p class="post_info">
                 <span><i class="fa fa-clock-o"></i><?php echo timeago(get_gmt_from_date(get_the_time('Y-m-d G:i:s'))) ?></span>
-                <a href="#"><i class="fa fa-comments-o"></i> <span
-                            class="badge"><?php echo $post->comment_count; ?></span></a>
+                <a href="#"> <span
+                            class="badge"><i class="fa fa-comments-o"></i><span><?php echo $post->comment_count; ?></span></span></a>
                 &nbsp;&nbsp;
-                <a href="#"><i class="fa fa-heart-o"></i><span
-                            class="badge"><?php wp_zan_count(); ?></span></a>
+                <a href="#"><span
+                            class="badge"><i class="fa fa-thumbs-up"></i><span><?php wp_zan_count(); ?></span></span></a>
                 &nbsp;&nbsp;
-                <a href="#"><i class="fa fa-eye"></i><span
-                            class="badge"><?php deel_views('℃'); ?></span></a>
+                <a href="#"><span
+                            class="badge"><i class="fa fa-eye"></i><span><?php deel_views('℃'); ?></span></span></a>
                 &nbsp;&nbsp;
             </p>
         </div>

@@ -68,15 +68,16 @@
                 foreach ($rand_posts as $rand_post) :
                     $count++;
                     ?>
-                    <li class="list-group-item"><span class="count_seq"><?php echo $count; ?></span><a
-                                title="<?php echo get_the_title($rand_post); ?>"
-                                data-toggle="tooltip"
-                                data-placement="top"
-                                href="<?php the_permalink($rand_post); ?>"><?php
+                    <li class="list-group-item post" title="<?php echo $rand_post->post_title; ?>"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        href="<?php the_permalink($rand_post); ?>"><span class="count_seq"><?php echo $count; ?></span>
+                        <a
+                                ><?php
                             if (is_search()) {
-                                echo highlightKeyWord($s, getSubStrTitle($rand_post));
+                                echo highlightKeyWord($s, $rand_post->post_title);
                             } else {
-                                subStrTitle($rand_post);
+                                echo $rand_post->post_title;
                             }
 
                             ?></a>

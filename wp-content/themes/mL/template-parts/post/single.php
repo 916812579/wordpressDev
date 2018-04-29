@@ -39,7 +39,7 @@
             <span class="like"><?php wp_custom_zan(); ?></span>
             <span class="shang-p">
                 <a href="#pay_shang" id="shang-main-p">赏</a>
-                <div id="shang_box" class="shang_box wow animated bounceInUp" style="display: none;">
+                <div id="shang_box" class="shang_box" style="display: none;">
                     <div class="shang_box_content">
                             <div class="shang_tit">
                                 <p>感谢您的支持，我会继续努力的!</p>

@@ -4,7 +4,7 @@
  */
 ?>
 
-<nav class="navbar navbar-default wow bounceInDown animated">
+<nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
 

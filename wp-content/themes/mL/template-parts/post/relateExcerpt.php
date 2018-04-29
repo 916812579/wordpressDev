@@ -10,7 +10,7 @@
         <?php } ?>
         <div class="caption">
             <p>
-                <a class="post_title_link" href="<?php the_permalink(); ?>"><?php subStrTitle(); ?></a>
+                <a class="post_title_link" href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
             </p>
         </div>
     </div>
