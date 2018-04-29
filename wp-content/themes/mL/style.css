@@ -1181,4 +1181,8 @@ strong {
     color: #fff;
 }
 
+.post-content img {
+    width: 100%;
+}
+
 
