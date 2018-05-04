@@ -380,7 +380,6 @@ a:hover {
 }
 
 .article-content h1, .article-content h2, .article-content h3, .article-content h4, .article-content h5, .article-content h6, .article-content h7 {
-    border-left: solid 4px #feab3a87;
     padding-left: 14px;
     margin-bottom: 20px;
 }
@@ -1182,6 +1181,24 @@ strong {
 
 .post-content img {
     width: 100%;
+}
+
+table {
+    margin: 15px 0;
+}
+
+table th, table td {
+    border: 1px solid #ccc;
+    padding: 6px 13px;
+}
+
+table tr:nth-child(2n) {
+    background-color: #f8f8f8;
+}
+
+table tr {
+    border-top: 1px solid #ccc;
+    background-color: #fff;
 }
 
 
